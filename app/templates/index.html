@@ -1,7 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
-    <h1>Hi, {{ user.nickname }}!</h1>
-    {% for post in posts %}
-    <div><p>{{ post.author.nickname }} says: <b>{{ post.body }}</b></p></div>
-    {% endfor %}
+<head>
+  <link href="{{ url_for('static',filename='css/screen.css') }}" media="screen, projection" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <a href="#" class="btn-big-red">Press me!</a>
+</body>
+
 {% endblock %}
