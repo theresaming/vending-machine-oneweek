@@ -2,14 +2,18 @@
  * In this file you should write your main styles. (or centralize your imports)
  * Import this file using the following HTML or equivalent:
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
-/* line 7, ../sass/screen.scss */
+@font-face {
+  font-family: 'KlinicSlab';
+  src: url("../assets/KlinicSlabMediumIt.otf") format("opentype");
+}
+/* line 11, ../sass/screen.scss */
 body {
-  background: #dbe6dd;
+  background: #FDFDFD;
   text-align: center;
   -webkit-transform: translateZ(0);
 }
 
-/* line 13, ../sass/screen.scss */
+/* line 17, ../sass/screen.scss */
 .btn-big-red {
   background-color: #C63702;
   background-image: linear-gradient(167deg, rgba(255, 255, 255, 0.1) 50%, rgba(0, 0, 0, 0) 55%), linear-gradient(to bottom, rgba(255, 255, 255, 0.15), rgba(0, 0, 0, 0));
@@ -17,8 +21,8 @@ body {
   box-shadow: 0 0 0 1px #C63702 inset, 0 0 0 2px rgba(255, 255, 255, 0.15) inset, 0 8px 0 0 #AD3002, 0 8px 0 1px rgba(0, 0, 0, 0.4), 0 8px 8px 1px rgba(0, 0, 0, 0.5);
   color: #FFF;
   display: inline-block;
-  font-family: "Lucida Grande", Arial, sans-serif;
-  font-size: 22px;
+  font-family: "KlinicSlab";
+  font-size: 33px;
   font-weight: bold;
   height: 180px;
   letter-spacing: 0px;
@@ -35,13 +39,13 @@ body {
   -webkit-transition: 0.15s;
   transition: 0.15s;
 }
-/* line 47, ../sass/screen.scss */
+/* line 51, ../sass/screen.scss */
 .btn-big-red:hover, .btn-big-red:focus {
   background-color: #D13902;
   box-shadow: 0 0 0 1px #C63702 inset, 0 0 0 2px rgba(255, 255, 255, 0.15) inset, 0 10px 0 0 #AD3002, 0 10px 0 1px rgba(0, 0, 0, 0.4), 0 10px 8px 1px rgba(0, 0, 0, 0.6);
   top: -2px;
 }
-/* line 57, ../sass/screen.scss */
+/* line 61, ../sass/screen.scss */
 .btn-big-red:active {
   box-shadow: 0 0 0 1px #AD3002 inset, 0 0 0 2px rgba(255, 255, 255, 0.15) inset, 0 0 0 1px rgba(0, 0, 0, 0.4);
   -moz-transform: translateY(10px);

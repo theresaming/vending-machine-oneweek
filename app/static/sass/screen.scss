@@ -3,9 +3,13 @@
  * Import this file using the following HTML or equivalent:
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
  @import "compass/css3";
+ @font-face {
+     font-family: 'KlinicSlab';
+     src: url("../assets/KlinicSlabMediumIt.otf") format("opentype");
+ }
 
  body {
-   background: #dbe6dd;
+   background: #FDFDFD;
    text-align: center;
    -webkit-transform: translateZ(0);
  }
@@ -30,8 +34,8 @@
      0 8px 8px 1px rgba(black, 0.5);
    color: #FFF;
    display: inline-block;
-   font-family: "Lucida Grande", Arial, sans-serif;
-   font-size: 22px;
+   font-family: "KlinicSlab";
+   font-size: 33px;
    font-weight: bold;
    height: 180px;
    letter-spacing: 0px;
