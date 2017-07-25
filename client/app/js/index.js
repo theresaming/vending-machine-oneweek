@@ -7,73 +7,107 @@ var images = {
     lolly: 'img/lolly.png'
 };
 
-(function ($) {
-    resetReels();
-    $('#playBtn').on('click', () => {
-        // reset the reels
-        resetReels();
-       
-        console.log("click!");
-        let reels = $('.slot');
-        console.log(reels);
-        let nums = reels.map((index, reel) => $('li', $(reel)).length);
-        // console.log(nums);
-        let r = Math.random();
-        let winners;
-        if (r < 0.1) {
-            // lose
-            console.log("lose");
-            winners = [1, 2, 2];
-        } else if (r < 0.2) {
-            // hershey
-            console.log("big prize");
-            winners = [5, 3, 3];
-        } else {
-            // lolly
-            console.log("small prize");
-            winners = [5, 1, 5];
-        }
-        winners = [1, 2, 1];
+// function getWinners(reelImgs, winners) {
+//     return reelImgs.map((imgs, index) => {
+//         let indices = imgs.map((img, idx) => {
+//             return {
+//                 img: img,
+//                 index: idx
+//             };
+//         }).filter((obj) => obj.img === winners[index]).map((obj) => obj.index);
+//         return Math.floor(Math.random() * indices.length) + 1;
+//     });
+// }
 
-        $('.slot').each((index, reel) =>
-            $(reel).jSlots({
-                number: nums[index],
-                winnerNumber: winners[index],
-                spinner: '#playBtn2'
-            })
-        );
-        $('#playBtn2').trigger('click')
+(function ($) {
+    // resetReels();
+    // $('#playBtn').on('click', () => {
+    //     // reset the reels
+    //     var reelImgs = resetReels();
+    //     let reels = $('.slot');
+    //     let nums = reels.map((index, reel) => $('li', $(reel)).length);
+    //     // console.log(nums);
+    //     let r = Math.random();
+    //     let winners;
+    //     let message;
+
+    //     if (r < 0.1) {
+    //         // lose
+    //         message = "nothing";
+    //         winners = getWinners(reelImgs, [images.hershey, images.hershey, images.lolly]);
+    //     } else if (r < 0.2) {
+    //         // hershey
+    //         message = "big prize";
+    //         winners = getWinners(reelImgs, [images.hershey, images.hershey, images.hershey]);
+    //     } else {
+    //         // lolly
+    //         message = "small prize";
+    //         winners = getWinners(reelImgs, [images.lolly, images.lolly, images.lolly]);
+    //     }
+
+    //     let promises = [];
+    //     console.log($('.slot').length);
+    //     $('.slot').each((index, reel) => {
+    //         let prom = new Promise((res, rej) => {
+    //             $(reel).jSlots({
+    //                 number: nums[index],
+    //                 winnerNumber: winners[index],
+    //                 spinner: '#playBtn2',
+    //                 onWin: function() {
+    //                     res("done");
+    //                 }
+    //             });
+    //         });
+    //         promises.push(prom);
+    //     });
+    //     $('#playBtn2').trigger('click')
+
+    //     Promise.race(promises).then((data) => {
+    //         alert(message);
+    //         console.log("done");
+    //     });
+    // });
+    $('.slot').jSlots({
+        number: 3,
+        spinner: '#playBtn',
+        onEnd: function (finalNums) {
+            alert(finalNums);
+        }
     });
 })(jQuery);
 
-function resetReels() {
-    $('.reels-container').empty();
-    for (let i = 0; i < 3; i++) {
-        $('.reels-container').append($('<div></div>').attr('class', 'jSlots-wrapper'));
-    }
-    $('.jSlots-wrapper').each((index, el) => {
-        $(el).append($('<ul></ul>').attr('class', 'slot'));
-    });
+// function resetReels() {
+//     $('.reels-container').empty();
+//     for (let i = 0; i < 3; i++) {
+//         $('.reels-container').append($('<div></div>').attr('class', 'jSlots-wrapper'));
+//     }
+//     $('.jSlots-wrapper').each((index, el) => {
+//         $(el).append($('<ul></ul>').attr('class', 'slot'));
+//     });
         
-    $('.slot').each((index, slot) => {
-        var numHershey = Math.floor(Math.random() * 3) + 1 // [1, 3]
-        var numLolly = Math.floor(Math.random() * 5) + 2 // [2, 6]
-        var imgs = [];
-        for (let i = 0; i < numHershey; i++) {
-            imgs.push(images.hershey);
-        }
-        for (let i = 0; i < numLolly; i++) {
-            imgs.push(images.lolly);
-        }
-        _.shuffle(imgs);
+//     var reelImgs = []
+//     $('.slot').each((index, slot) => {
+//         var numHershey = 2; //Math.floor(Math.random() * 3) + 1 // [1, 3]
+//         var numLolly = 4; // Math.floor(Math.random() * 5) + 2 // [2, 6]
+//         var imgs = [];
+//         for (let i = 0; i < numHershey; i++) {
+//             imgs.push(images.hershey);
+//         }
+//         for (let i = 0; i < numLolly; i++) {
+//             imgs.push(images.lolly);
+//         }
+//         imgs = _.shuffle(imgs);
+//         reelImgs.push(imgs);
 
-        let reel = $(slot);
-        imgs.forEach(v => {
-            let li = $('<li></li>');
-            li.append($('<img/>').attr('src', v));
-            reel.append(li);
-        });
-    });
+//         let reel = $(slot);
+//         imgs.forEach(v => {
+//             let li = $('<li></li>');
+//             li.append($('<img/>').attr('src', v));
+//             reel.append(li);
+//         });
+//     });
+
+//     return reelImgs;
 }
 
 // var soundButtons = document.querySelectorAll('.button-sound');

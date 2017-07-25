@@ -1,3 +1,4 @@
 server/venv
 server/__pycache__
-client/node_modules
+angular-client/node_modules
+client

@@ -17,7 +17,7 @@ app.on('ready', function() {
         width: 500
     });
 
-    mainWindow.loadURL('file://' + __dirname + '/app/slotmachine.html');
+    mainWindow.loadURL('file://' + __dirname + '/src/index.html');
 
     // globalShortcut.register('ctrl+shift+1', function () {
     //     mainWindow.webContents.send('global-shortcut', 0);
