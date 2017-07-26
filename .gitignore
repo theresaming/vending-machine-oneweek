@@ -2,3 +2,4 @@ server/venv
 server/__pycache__
 angular-client/node_modules
 client/
+flask/
