@@ -26,8 +26,8 @@ def survey():
     return jsonify(path = full_path, caption = caption)
     # return render_template('survey.html', img_url=segmented_img_url, title="Swipe n\' Snack", img_caption=caption)
 
-@app.route('/rating', methods=['GET', 'POST'])
+@app.route('/rating', methods=['POST'])
 def rating():
-#     content = request.json()
-# #     print (content)
+    content = request.json()
+    print (content)
     return jsonify(path = 'asjdksaljdljda',caption= 'asjdklasjdlska', rating = 5)
