@@ -3,5 +3,7 @@
 <br>
 
 <script type="text/javascript" src="{{ url_for('static',filename='imagerandomizer.js') }}"></script>
-<img id="random"> 
+<img id="random" src= '{{ img_url }}'>
+<!-- <img id="random" src="{{ url_for('static',filename='assets/images/image3258.jpeg') }}" -->
+<p> "{{ img_caption}}" </p>
 {% endblock %}

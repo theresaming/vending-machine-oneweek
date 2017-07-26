@@ -1,15 +1,22 @@
-from flask import render_template
+from flask import render_template, url_for
 from app import app
+from random import choice
+import os, sys
+from app.analyzeImage import magic
 
 @app.route('/')
 @app.route('/index')
 def index():
-    user = {'nickname': 'Miguel'}  # fake user
     return render_template('index.html',
-                           title='Swipe n\' Snack',
-                           user=user)
+                           title='Swipe n\' Snack')
 
-@app.route('/survey')
+@app.route('/survey', methods=['GET', 'POST'])
 def survey():
     # get a random image
-    return render_template('survey.html', title="Swipe n\' Snack")
+    names = os.listdir(os.path.join(app.static_folder, 'assets/images/'))
+    url_prefix = 'C:/Users/t-thming/Documents/GitHub/vending-machine-oneweek/server/app'
+    segmented_img_url = '/static/assets/images/' + choice(names)
+    full_img_url = url_prefix + segmented_img_url
+    # img_url = url_for('static', filename=os.path.join('assets/images/', choice(names)))
+    caption = magic(full_img_url)
+    return render_template('survey.html', img_url=segmented_img_url, title="Swipe n\' Snack", img_caption=caption)
