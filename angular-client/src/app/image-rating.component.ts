@@ -14,6 +14,7 @@ export class ImageRatingComponent implements OnInit {
   private starsHighlighted: number = 0;
   
   private imagesRated: number = 0;
+  public loadingImage = false;
 
   @Output() onRated = new EventEmitter<number>();
 
@@ -50,8 +51,8 @@ export class ImageRatingComponent implements OnInit {
         // Remove any invalid XML tags as per http://validator.w3.org
         $svg = $svg.removeAttr('xmlns:a');
 
-        $svg.attr('width', '100px');
-        $svg.attr('height', '100px');
+        $svg.attr('width', '80px');
+        $svg.attr('height', '80px');
 
         // Check if the viewport is set, if the viewport is not set the SVG wont't scale.
         if(!$svg.attr('viewBox') && $svg.attr('height') && $svg.attr('width')) {
@@ -85,23 +86,22 @@ export class ImageRatingComponent implements OnInit {
       jQuery('.ratingarea .star').removeClass('highlight');
       jQuery('.ratingarea path').css('fill', '');
       
-    }),
-    jQuery('.ratingarea .star').click(function(event){
-      // console.log(event);
-      // console.log(num);
-      var num = parseInt(jQuery(event.currentTarget).attr('id').substring(3));
-      that.imageService.sendRating({
-        src: that.imageUrl,
-        rating: num,
-        caption: that.caption
-      }).then(() => {
-        that.onRated.emit(num);
-        that.imagesRated++;
-        if (that.imagesRated < 10) {
-          that.getImage();
-        }
-      });
+    })
+  }
+
+  starClick(num) {
+    console.log("doing click event!");
+    this.imageService.sendRating({
+      src: this.imageUrl,
+      rating: num,
+      caption: this.caption
     });
+    console.log("rated!");
+    this.onRated.emit(num);
+    this.imagesRated++;
+    if (this.imagesRated < 10) {
+      this.getImage();
+    }
   }
 
   public getStars(): Array<number> {
@@ -131,9 +131,11 @@ export class ImageRatingComponent implements OnInit {
   }
 
   public getImage(): void {
+    this.loadingImage = true;
     this.imageService.getRandomImage().then((img) => {
       console.log(img);
-      this.imageUrl = img.src;
+      this.loadingImage = false;
+      this.imageUrl = img.path;
       this.caption = img.caption;
     });
   }

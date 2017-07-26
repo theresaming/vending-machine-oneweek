@@ -1,4 +1,5 @@
 ########### Python 3.6 #############
+import sys
 import http.client, urllib.request, urllib.parse, urllib.error, base64, json
 
 ###############################################
@@ -24,6 +25,8 @@ def magic(path):
     with open( pathToFileInDisk, 'rb' ) as f:
         data = f.read()
 
+    print(pathToFileInDisk)
+
     headers = {
         # Request headers.
         'Content-Type': 'application/octet-stream',
@@ -38,23 +41,30 @@ def magic(path):
         'language': 'en',
     })
 
-    try:
-        # Execute the REST API call and get the response.
-        conn = http.client.HTTPSConnection('westcentralus.api.cognitive.microsoft.com')
-        conn.request("POST", "/vision/v1.0/analyze?%s" % params, data, headers)
-        response = conn.getresponse()
-        data = response.read()
-        # 'data' contains the JSON data. The following formats the JSON data for display.
-        parsed = json.loads(data)
-        caption = parsed["description"]["captions"][0]["text"]
-        # print(caption)
-        # print ("Response:")
-        # print (json.dumps(parsed, sort_keys=True, indent=2))
-        conn.close()
+    caption = None
+    tries = 0
+    while caption is None and tries < 5:
+        try:
+            # Execute the REST API call and get the response.
+            conn = http.client.HTTPSConnection('westcentralus.api.cognitive.microsoft.com')
+            conn.request("POST", "/vision/v1.0/analyze?%s" % params, data, headers)
+            response = conn.getresponse()
+            data = response.read()
+            # 'data' contains the JSON data. The following formats the JSON data for display.
+            parsed = json.loads(data)
+            caption = parsed["description"]["captions"][0]["text"]
+            # print(caption)
+            # print ("Response:")
+            # print (json.dumps(parsed, sort_keys=True, indent=2))
+            conn.close()
+        except Exception as e:
+            print('Error:', e)
+            tries += 1
+
+    if caption is None:
+        return "caption could not be generated :("
+    else:
         return caption
 
-    except Exception as e:
-        print('Error:')
-        print(e)
 
     ####################################

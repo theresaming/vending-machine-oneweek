@@ -2,8 +2,14 @@
 	text-align: center;
 }
 
+.image {
+	height: 80%;
+	/*padding-top: 30px;*/
+}
+
 .ratingarea {
 	text-align: center;
+	/*margin: 25px;*/
 }
 
 .ratingarea .star.highlight svg path {
@@ -16,15 +22,4 @@
 
 .ratingarea .star {
 	width: 100px;
-}
-
-.overlay {
-    background: #e9e9e9;
-    /*display: none;*/
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    opacity: 0.5;
 }
