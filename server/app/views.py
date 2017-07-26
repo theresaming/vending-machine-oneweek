@@ -39,7 +39,7 @@ def rating():
     print (content)
     return jsonify(path = 'asjdksaljdljda',caption= 'asjdklasjdlska', rating = 5)
 
-@app.route('/vend', methods=['POST'])
+@app.route('/api/vend', methods=['POST'])
 def vend():
     content = request.get_json()
     return jsonify(path = 'asjdksaljdljda',caption= 'asjdklasjdlska', rating = 5)
