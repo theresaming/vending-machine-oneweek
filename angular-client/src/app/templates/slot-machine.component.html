@@ -1,19 +1,18 @@
 <div class="slotmachine">
-    <h1 (click)="test()">HELLO</h1>
-    <p>Wonderful slot machine</p>
+    <h2>Spin for your <span class="italicaccent">Snack</span></h2>
     <div class="reels-container">
     	<ul class="slot">
     		<li>
-    			<img src="assets/img/hershey.png" />
+    			<img src="assets/img/mms.png" />
     		</li>
     		<li>
-    			<img src="assets/img/hershey.png" />
+    			<img src="assets/img/mms.png" />
     		</li>
     		<li>
     			<img src="assets/img/lolly.png" />
     		</li>
     		<li>
-    			<img src="assets/img/hershey.png" />
+    			<img src="assets/img/mms.png" />
     		</li>
     		<li>
     			<img src="assets/img/lolly.png" />
@@ -24,6 +23,8 @@
     	</ul>
     </div>
     <!-- this button will start the spin -->
-    <input type="button" id="playBtn" value="play">
-    <input style="display: none" type="button" id="playBtn2" value="play (hack)">
+    <input class="spinButton" type="button" id="playBtn" value="Spin!">
+    <div style="opacity: 0" class="rewardarea" style="margin: 50px">
+    {{ message }}
+    </div>
 </div>

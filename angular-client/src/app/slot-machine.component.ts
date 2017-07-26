@@ -8,9 +8,16 @@ import 'assets/js/jquery.jSlots.js';
 @Component({
 	selector: 'slot-machine',
 	templateUrl: './templates/slot-machine.component.html',
-	styleUrls: ['css/slot-machine.component.css']
+	styleUrls: ['css/slot-machine.component.css', 'css/screen.css']
 })
 export class SlotMachineComponent implements OnInit {
+	public showReward = false;
+	public winner = false;
+	public hershey = [1, 2, 4];
+	public lolly = [3, 5, 6];
+	public message = "";
+	public spinning = false;
+
 	constructor(private router: Router) {
 	}
 
@@ -30,9 +37,19 @@ export class SlotMachineComponent implements OnInit {
 	        number: 3,
 	        spinner: '#playBtn',
 	        onEnd: finalNums => {
-	        	setTimeout(() => {this.router.navigate(['/rating']);}, 1000);
+	        	this.showReward = true;
+        		this.winner = true;
+        		this.message = "You win!";
+        		this.spinning = true;
+        		jQuery('#playBtn').attr('id', 'blah');
+        		jQuery('.rewardarea').css('opacity', 1);
+	        	setTimeout(() => {this.router.navigate(['/rating']);}, 3000000);
 	        	// dispense candy
 	        }
 	    });
+	}
+
+	getWinner(finalNums) {
+		return true;
 	}
 }
