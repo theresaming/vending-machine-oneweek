@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { ImageCaptionService } from './image-caption.service';
 
 declare var jQuery: any;
 
@@ -8,15 +9,25 @@ declare var jQuery: any;
   styleUrls: ['css/screen.css', 'css/image-area.component.css']
 })
 export class ImageRatingComponent implements OnInit {
-  public image_url: string = "https://staticdelivery.nexusmods.com/mods/110/images/thumbnails/74627-0-1459502036.jpg";
-  public caption: string = "A really good caption";
-  public starsHighlighted = 0;
+  private imageUrl: string = "";
+  private caption: string = "";
+  private starsHighlighted: number = 0;
+  
+  private imagesRated: number = 0;
 
-  constructor() {
+  @Output() onRated = new EventEmitter<number>();
+
+  constructor(
+        private imageService: ImageCaptionService,
+        ) {
   }
 
+
   ngOnInit(): void {
+    this.getImage();
+
     console.log('init!');
+    var that = this;
     jQuery('img.svg').each(function(){
       var $img = jQuery(this);
       var imgID = $img.attr('id');
@@ -54,8 +65,8 @@ export class ImageRatingComponent implements OnInit {
     });
 
     jQuery('.ratingarea .star').mouseenter(function(event){
-      console.log(event);
-      console.log(num);
+      // console.log(event);
+      // console.log(num);
       var num = parseInt(jQuery(event.currentTarget).attr('id').substring(3));
       jQuery('.ratingarea .star').each(function(index, el) {
         if (index < num) {
@@ -68,17 +79,28 @@ export class ImageRatingComponent implements OnInit {
       })
     }),
     jQuery('.ratingarea .star').mouseleave(function(event){
-      console.log(event);
-      console.log(num);
+      // console.log(event);
+      // console.log(num);
       var num = parseInt(jQuery(event.currentTarget).attr('id').substring(3));
       jQuery('.ratingarea .star').removeClass('highlight');
       jQuery('.ratingarea path').css('fill', '');
       
     }),
     jQuery('.ratingarea .star').click(function(event){
-      console.log(event);
-      console.log(num);
+      // console.log(event);
+      // console.log(num);
       var num = parseInt(jQuery(event.currentTarget).attr('id').substring(3));
+      that.imageService.sendRating({
+        src: that.imageUrl,
+        rating: num,
+        caption: that.caption
+      }).then(() => {
+        that.onRated.emit(num);
+        that.imagesRated++;
+        if (that.imagesRated < 10) {
+          that.getImage();
+        }
+      });
     });
   }
 
@@ -106,5 +128,13 @@ export class ImageRatingComponent implements OnInit {
 
   public sendRating(star: number): void {
     console.log("rating is", star);
+  }
+
+  public getImage(): void {
+    this.imageService.getRandomImage().then((img) => {
+      console.log(img);
+      this.imageUrl = img.src;
+      this.caption = img.caption;
+    });
   }
 }

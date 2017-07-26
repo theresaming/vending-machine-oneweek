@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 // import * as jQuery from 'jquery';
 declare var jQuery: any;
@@ -10,7 +11,7 @@ import 'assets/js/jquery.jSlots.js';
 	styleUrls: ['css/slot-machine.component.css']
 })
 export class SlotMachineComponent implements OnInit {
-	constructor() {
+	constructor(private router: Router) {
 	}
 
 	public test(){
@@ -28,8 +29,9 @@ export class SlotMachineComponent implements OnInit {
 		jQuery('.slot').jSlots({
 	        number: 3,
 	        spinner: '#playBtn',
-	        onEnd: function (finalNums) {
-	            alert(finalNums);
+	        onEnd: finalNums => {
+	        	setTimeout(() => {this.router.navigate(['/rating']);}, 1000);
+	        	// dispense candy
 	        }
 	    });
 	}

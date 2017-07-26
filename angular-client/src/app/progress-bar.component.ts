@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['css/screen.css']
 })
 export class ProgressBarComponent implements OnInit {
-  public curr: number = 1;
+  public curr: number = 0;
+  public timeout: any;
 
   constructor() {
   }
@@ -27,16 +28,26 @@ export class ProgressBarComponent implements OnInit {
     return arr;
   }
 
-  ngOnInit(): void {
-    var that = this;
-
-    setInterval(function() {
-      if (that.curr < 10) {
-        that.curr++;
-        if (that.curr == 10) {
+  public reset(): void {
+    this.curr = 0;
+    if (this.timeout) {
+      clearTimeout(this.timeout);
+    }
+    this.timeout = setInterval(() => {
+      if (this.curr < 10) {
+        this.curr++;
+        if (this.curr == 10) {
           alert("done");
         }
       }
     }, 1000);
+  }
+
+  public setProgress(progress: number): void {
+    this.curr = progress;
+  }
+
+  ngOnInit(): void {
+    // this.reset();
   }
 }

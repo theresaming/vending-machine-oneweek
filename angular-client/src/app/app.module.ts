@@ -6,20 +6,22 @@ import { AppComponent } from './app.component';
 import { SlotMachineComponent } from './slot-machine.component';
 import { ProgressBarComponent } from './progress-bar.component';
 import { ImageRatingComponent } from './image-rating.component';
+import { RatingComponent } from './rating.component';
 
 // import { HeroDetailComponent } from './hero-detail.component';
 // import { HeroesComponent } from './heroes.component';
 // import { DashboardComponent } from './dashboard.component';
-// import { HeroService } from './hero.service';
+import { ImageCaptionService } from './image-caption.service';
 
-// import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     SlotMachineComponent,
     ProgressBarComponent,
-    ImageRatingComponent
+    ImageRatingComponent,
+    RatingComponent
     // HeroDetailComponent,
     // HeroesComponent,
     // DashboardComponent
@@ -27,10 +29,10 @@ import { ImageRatingComponent } from './image-rating.component';
   imports: [
     BrowserModule,
     FormsModule,
-    // AppRoutingModule
+    AppRoutingModule
   ],
   providers: [
-    // HeroService
+    ImageCaptionService
   ],
   bootstrap: [AppComponent]
 })
