@@ -1,0 +1,28 @@
+<div class="imageratingarea">
+	<div class="imagearea">
+		<img src="{{ image_url }}" (click)="sendRating(100)" />
+		<br />
+		<span class="caption">{{ caption }}</span>
+	</div>
+	<div class="ratingarea">
+		<!-- <span *ngFor="let star of getStars()"> -->
+		<span id="img1" class="star">
+		<img class="svg" src="assets/img/pointed_star.svg" />
+		</span>
+		<span id="img2" class="star">
+		<img  class="svg" src="assets/img/pointed_star.svg" />
+		</span>
+		<span id="img3" class="star">
+		<img  class="svg" src="assets/img/pointed_star.svg" />
+		</span>
+		<span id="img4" class="star">
+		<img  class="svg" src="assets/img/pointed_star.svg" />
+		</span>
+		<span id="img5" class="star">
+		<img class="svg" src="assets/img/pointed_star.svg" />
+		</span>
+			<!-- <img *ngFor="let star of getStars()" (mouseenter)="setStars(star.num)" (click)="sendRating(star.num)" src="assets/img/pointed_star.svg" [ngStyle]="{'fill': star.backgroundColor}" /> -->
+		<!-- </span> -->
+	</div>
+</div>
+

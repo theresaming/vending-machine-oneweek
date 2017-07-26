@@ -1,0 +1,15 @@
+.imagearea {
+	text-align: center;
+}
+
+.ratingarea {
+	text-align: center;
+}
+
+.ratingarea .star.highlight svg path {
+	fill: #F1C21C;
+}
+
+.ratingarea .star svg {
+	width: 100px;
+}

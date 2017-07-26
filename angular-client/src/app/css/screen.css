@@ -1,0 +1,157 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+@font-face {
+  font-family: 'KlinicSlabMediumIt';
+  src: url("../assets/KlinicSlabMediumIt.otf") format("opentype");
+}
+@font-face {
+  font-family: 'KlinicSlabLight';
+  src: url("../assets/KlinicSlabLight.otf") format("opentype");
+}
+/* line 15, ../sass/screen.scss */
+body {
+  background: #FDFDFD;
+  text-align: center;
+  -webkit-transform: translateZ(0);
+}
+
+/* line 21, ../sass/screen.scss */
+img {
+  border: none;
+}
+
+/* line 25, ../sass/screen.scss */
+.btn-big-red {
+  background-color: #C63702;
+  background-image: linear-gradient(167deg, rgba(255, 255, 255, 0.1) 50%, rgba(0, 0, 0, 0) 55%), linear-gradient(to bottom, rgba(255, 255, 255, 0.15), rgba(0, 0, 0, 0));
+  border-radius: 1000px;
+  box-shadow: 0 0 0 1px #C63702 inset, 0 0 0 2px rgba(255, 255, 255, 0.15) inset, 0 8px 0 0 #AD3002, 0 8px 0 1px rgba(0, 0, 0, 0.4), 0 8px 8px 1px rgba(0, 0, 0, 0.5);
+  color: #FFF;
+  display: inline-block;
+  font-family: "KlinicSlabMediumIt";
+  font-size: 33px;
+  font-weight: bold;
+  height: 180px;
+  letter-spacing: 0px;
+  line-height: 180px;
+  margin: 30px 0 10px;
+  position: relative;
+  text-align: center;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+  text-decoration: none !important;
+  top: 0;
+  width: 186px;
+  -moz-transition: 0.15s;
+  -o-transition: 0.15s;
+  -webkit-transition: 0.15s;
+  transition: 0.15s;
+}
+/* line 59, ../sass/screen.scss */
+.btn-big-red:hover, .btn-big-red:focus {
+  background-color: #D13902;
+  box-shadow: 0 0 0 1px #C63702 inset, 0 0 0 2px rgba(255, 255, 255, 0.15) inset, 0 10px 0 0 #AD3002, 0 10px 0 1px rgba(0, 0, 0, 0.4), 0 10px 8px 1px rgba(0, 0, 0, 0.6);
+  top: -2px;
+}
+/* line 69, ../sass/screen.scss */
+.btn-big-red:active {
+  box-shadow: 0 0 0 1px #AD3002 inset, 0 0 0 2px rgba(255, 255, 255, 0.15) inset, 0 0 0 1px rgba(0, 0, 0, 0.4);
+  -moz-transform: translateY(10px);
+  -ms-transform: translateY(10px);
+  -webkit-transform: translateY(10px);
+  transform: translateY(10px);
+}
+
+/* line 78, ../sass/screen.scss */
+*, *:after, *:before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "KlinicSlabLight";
+}
+
+/* Form Progress */
+/* line 87, ../sass/screen.scss */
+.progress {
+  margin: 3% auto;
+  text-align: center;
+}
+
+/* line 92, ../sass/screen.scss */
+.progress .circle,
+.progress .bar {
+  display: inline-block;
+  background: #fff;
+  width: 40px;
+  height: 40px;
+  border-radius: 40px;
+  border: 1px solid #B8B8B8;
+}
+
+/* line 100, ../sass/screen.scss */
+.progress .bar {
+  position: relative;
+  width: 1%;
+  height: 6px;
+  margin-left: -5px;
+  margin-right: -5px;
+  border-left: none;
+  border-right: none;
+  border-radius: 0;
+}
+
+/* line 111, ../sass/screen.scss */
+.progress .circle .label {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  border-radius: 32px;
+  margin-top: 3px;
+  color: #EBEBEB;
+  font-size: 22px;
+}
+
+/* line 121, ../sass/screen.scss */
+.progress .circle .title {
+  color: #B8B8B8;
+  font-size: 13px;
+  line-height: 30px;
+  margin-left: -5px;
+}
+
+/* Done / Active */
+/* line 129, ../sass/screen.scss */
+.progress .bar.done,
+.progress .circle.done {
+  background: #F1C21C;
+}
+
+/* line 133, ../sass/screen.scss */
+.progress .bar.active {
+  background: linear-gradient(to right, #f1c21c 25%, #ffffff 100%);
+}
+
+/* line 136, ../sass/screen.scss */
+.progress .circle.done .label {
+  color: #FFF;
+  background: #F1C21C;
+}
+
+/* line 141, ../sass/screen.scss */
+.progress .circle.done {
+  color: #EBEBEB;
+}
+
+/* line 144, ../sass/screen.scss */
+.progress .circle.active .label {
+  color: #FFF;
+  background: #F1C21C;
+  box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.2);
+}
+
+/* line 149, ../sass/screen.scss */
+.progress .circle.active {
+  color: #F1C21C;
+}
