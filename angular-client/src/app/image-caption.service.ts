@@ -54,10 +54,16 @@ export class ImageCaptionService {
 		// return new Promise(resolve => {
 		// 	setTimeout(() => resolve("done!"), 1);
 		// });
-		return this.http.post('http://localhost:5000/api/rating', {
+		return this.http.post('/api/rating', {
 			imageName: img.src,
 			caption: img.caption,
 			rating: img.rating
 		}).toPromise();
 	} 
+
+	sendVend(): Promise<any> {
+		return this.http.post('/api/vend', {
+			type: "not implemented"
+		}).toPromise();
+	}
 }

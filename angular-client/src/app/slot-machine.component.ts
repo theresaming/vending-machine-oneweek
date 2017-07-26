@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ImageCaptionService } from './image-caption.service';
 
 // import * as jQuery from 'jquery';
 declare var jQuery: any;
@@ -18,7 +19,8 @@ export class SlotMachineComponent implements OnInit {
 	public message = "";
 	public spinning = false;
 
-	constructor(private router: Router) {
+	constructor(private router: Router,
+		private imageCaptionService: ImageCaptionService) {
 	}
 
 	public test(){
@@ -41,6 +43,7 @@ export class SlotMachineComponent implements OnInit {
         		this.winner = true;
         		this.message = "You win!";
         		this.spinning = true;
+        		this.imageCaptionService.sendVend();
         		jQuery('#playBtn').attr('id', 'blah');
         		jQuery('.rewardarea').css('opacity', 1);
 	        	setTimeout(() => {this.router.navigate(['/rating']);}, 3000000);
