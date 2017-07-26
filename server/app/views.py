@@ -1,5 +1,6 @@
 from flask import render_template, url_for, jsonify, json, request
 from app import app
+from app.vend import vending
 from random import choice
 import os, sys
 from app.analyzeImage import magic
@@ -37,4 +38,10 @@ def survey():
 def rating():
     content = request.get_json()
     print (content)
+    return jsonify(path = 'asjdksaljdljda',caption= 'asjdklasjdlska', rating = 5)
+
+@app.route('/api/vend', methods=['POST'])
+def vend():
+    vend = request.get_json()
+    vending()
     return jsonify(path = 'asjdksaljdljda',caption= 'asjdklasjdlska', rating = 5)
