@@ -1,4 +1,4 @@
-from flask import render_template, url_for
+from flask import render_template, url_for, jsonify, json, request
 from app import app
 from random import choice
 import os, sys
@@ -15,8 +15,19 @@ def survey():
     # get a random image
     names = os.listdir(os.path.join(app.static_folder, 'assets/images/'))
     url_prefix = 'C:/Users/t-thming/Documents/GitHub/vending-machine-oneweek/server/app'
-    segmented_img_url = '/static/assets/images/' + choice(names)
+    fileName = choice(names)
+    segmented_img_url = '/static/assets/images/' + fileName
     full_img_url = url_prefix + segmented_img_url
     # img_url = url_for('static', filename=os.path.join('assets/images/', choice(names)))
     caption = magic(full_img_url)
-    return render_template('survey.html', img_url=segmented_img_url, title="Swipe n\' Snack", img_caption=caption)
+    full_path = os.path.join(app.static_folder, 'assets\images\\', fileName)
+    # print(os.path.join(app.static_folder, 'assets\images\\', fileName))
+    # print(app.static_folder)
+    return jsonify(path = full_path, caption = caption)
+    # return render_template('survey.html', img_url=segmented_img_url, title="Swipe n\' Snack", img_caption=caption)
+
+@app.route('/rating', methods=['GET', 'POST'])
+def rating():
+#     content = request.json()
+# #     print (content)
+    return jsonify(path = 'asjdksaljdljda',caption= 'asjdklasjdlska', rating = 5)
