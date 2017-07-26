@@ -20,7 +20,7 @@ body {
 /* line 21, ../sass/screen.scss */
 img {
   border: none;
-  width: 30%;
+  max-width: 300px;
 }
 
 /* line 26, ../sass/screen.scss */
