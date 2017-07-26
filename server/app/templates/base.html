@@ -1,14 +1,57 @@
 <html>
   <head>
+    <link href="{{ url_for('static',filename='css/screen.css') }}" media="screen, projection" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="{{ url_for('static',filename='progressbar.js') }}"></script>
     {% if title %}
-    <title>{{ title }} - microblog</title>
+    <title>{{ title }}</title>
     {% else %}
-    <title>Welcome to microblog</title>
+    <title>Swipe n' Snack</title>
     {% endif %}
   </head>
   <body>
-    <div>Microblog: <a href="/index">Home</a></div>
-    <hr>
+    <!-- TODO: add top progress bar -->
+    <div class="progress">
+    <div class="circle">
+      <span class="label">1</span>
+    </div>
+    <span class="bar"></span>
+    <div class="circle">
+      <span class="label">2</span>
+    </div>
+    <span class="bar"></span>
+    <div class="circle">
+      <span class="label">3</span>
+    </div>
+    <span class="bar"></span>
+    <div class="circle">
+      <span class="label">4</span>
+    </div>
+    <span class="bar"></span>
+    <div class="circle">
+      <span class="label">5</span>
+    </div>
+    <span class="bar"></span>
+    <div class="circle">
+      <span class="label">6</span>
+    </div>
+    <span class="bar"></span>
+    <div class="circle">
+      <span class="label">7</span>
+    </div>
+    <span class="bar"></span>
+    <div class="circle">
+      <span class="label">8</span>
+    </div>
+    <span class="bar"></span>
+    <div class="circle">
+      <span class="label">9</span>
+    </div>
+    <span class="bar"></span>
+    <div class="circle">
+      <span class="label">10</span>
+    </div>
+
+  </div>
     {% block content %}{% endblock %}
   </body>
 </html>

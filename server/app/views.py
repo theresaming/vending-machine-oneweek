@@ -8,3 +8,8 @@ def index():
     return render_template('index.html',
                            title='Swipe n\' Snack',
                            user=user)
+
+@app.route('/survey')
+def survey():
+    # get a random image
+    return render_template('survey.html', title="Swipe n\' Snack")
