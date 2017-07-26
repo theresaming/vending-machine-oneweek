@@ -5,11 +5,15 @@ import { Component } from '@angular/core';
     selector: 'app-root',
     template: `
         <h1>{{title}}</h1>
-        <progress-bar></progress-bar>
-        <image-rating></image-rating>
+        <router-outlet></router-outlet>
     `
 })
 export class AppComponent {
 	title = "Hello!";
 	// <slot-machine></slot-machine>
+
+	onRated(event, progressBar): void {
+		console.log(event);
+		progressBar.reset();
+	}
 }
