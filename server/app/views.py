@@ -35,3 +35,8 @@ def rating():
     content = request.get_json()
     print (content)
     return jsonify(path = 'asjdksaljdljda',caption= 'asjdklasjdlska', rating = 5)
+
+@app.route('/vend', methods=['POST'])
+def vend():
+    content = request.get_json()
+    return jsonify(path = 'asjdksaljdljda',caption= 'asjdklasjdlska', rating = 5)
