@@ -22,12 +22,13 @@ def survey():
     caption = magic(full_img_url)
     full_path = os.path.join(app.static_folder, 'assets\images\\', fileName)
     # print(os.path.join(app.static_folder, 'assets\images\\', fileName))
-    # print(app.static_folder)
+    print(app.static_folder)
+
     return jsonify(path = full_path, caption = caption)
     # return render_template('survey.html', img_url=segmented_img_url, title="Swipe n\' Snack", img_caption=caption)
 
 @app.route('/rating', methods=['POST'])
 def rating():
-    content = request.json()
+    content = request.get_json()
     print (content)
     return jsonify(path = 'asjdksaljdljda',caption= 'asjdklasjdlska', rating = 5)
