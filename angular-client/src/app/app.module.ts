@@ -4,6 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { SlotMachineComponent } from './slot-machine.component';
+import { ProgressBarComponent } from './progress-bar.component';
+import { ImageRatingComponent } from './image-rating.component';
+
 // import { HeroDetailComponent } from './hero-detail.component';
 // import { HeroesComponent } from './heroes.component';
 // import { DashboardComponent } from './dashboard.component';
@@ -14,7 +17,9 @@ import { SlotMachineComponent } from './slot-machine.component';
 @NgModule({
   declarations: [
     AppComponent,
-    SlotMachineComponent
+    SlotMachineComponent,
+    ProgressBarComponent,
+    ImageRatingComponent
     // HeroDetailComponent,
     // HeroesComponent,
     // DashboardComponent

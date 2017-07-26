@@ -6,7 +6,7 @@ import 'assets/js/jquery.jSlots.js';
 
 @Component({
 	selector: 'slot-machine',
-	templateUrl: './slot-machine.component.html',
+	templateUrl: './templates/slot-machine.component.html',
 	styleUrls: ['css/slot-machine.component.css']
 })
 export class SlotMachineComponent implements OnInit {
