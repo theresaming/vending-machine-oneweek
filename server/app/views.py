@@ -15,12 +15,15 @@ def survey():
     # get a random image
     names = os.listdir(os.path.join(app.static_folder, 'assets/images/'))
     url_prefix = 'C:/Users/t-thming/Documents/GitHub/vending-machine-oneweek/server/app'
+    # url_prefix = app.static_folder
     fileName = choice(names)
-    segmented_img_url = '/static/assets/images/' + fileName
-    full_img_url = url_prefix + segmented_img_url
-    # img_url = url_for('static', filename=os.path.join('assets/images/', choice(names)))
-    caption = magic(full_img_url)
+    # segmented_img_url = '/static/assets/images/' + fileName
+    # full_img_url = url_prefix + segmented_img_url
     full_path = os.path.join(app.static_folder, 'assets\images\\', fileName)
+
+    # img_url = url_for('static', filename=os.path.join('assets/images/', choice(names)))
+    caption = magic(full_path)
+    # full_path = os.path.join(app.static_folder, 'assets\images\\', fileName)
     # print(os.path.join(app.static_folder, 'assets\images\\', fileName))
     print(app.static_folder)
 
