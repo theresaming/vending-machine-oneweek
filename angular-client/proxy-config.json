@@ -1,6 +1,10 @@
 {
-   "/api/*": {
+   "/api/rating": {
       "target": "http://localhost:5000",
+      "secure": false
+   },
+   "/api/vend": {
+      "target": "http://localhost:7000",
       "secure": false
    }
 }
