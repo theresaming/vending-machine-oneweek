@@ -3,3 +3,4 @@ server/__pycache__
 angular-client/node_modules
 client/
 flask/
+node_proxy/node_modules

@@ -2,9 +2,22 @@
 	text-align: center;
 }
 
-.image {
+.image-wrap {
 	height: 80%;
-	/*padding-top: 30px;*/
+	display: inline-block;
+	background-color: #222;
+	position: relative;
+}
+
+.image-wrap img {
+	max-height: 100%;
+}
+
+.image {
+	height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .ratingarea {
@@ -22,4 +35,37 @@
 
 .ratingarea .star {
 	width: 100px;
+	user-select: none;
+}
+
+.ratingarea {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.imageloader {
+   position: absolute;
+   left: 0;
+   right: 0;
+   top: 42%;
+   font-size: 82px;
+   color: white;
+}
+
+.captionwrap {
+	width: 100%;
+    position: absolute;
+  	bottom: 0;
+}
+
+.caption {
+  font-size: 20px;
+  color: #F1C21C;
+  line-height: 32px;
+ /* margin-top: -56px;*/
+  background-color: #111;
+  opacity: 0.8;
+  padding: 10px;
+  /*height: ;*/
 }
