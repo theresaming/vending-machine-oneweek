@@ -10,7 +10,7 @@
 var express = require('express');
 var request = require('request');
 
-var python_endpoint = 'http://10.104.160.223:7000';
+var python_endpoint = 'http://10.104.160.223:5000';
 
 var app = express();
 
