@@ -21,6 +21,3 @@ def vending():
         ser.read()
 
     ser.close()
-
-
-vending()
