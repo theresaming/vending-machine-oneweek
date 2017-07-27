@@ -19,7 +19,11 @@ export class SlotMachineComponent implements OnInit {
 	public message = "";
 	public spinning = false;
 
-	constructor(private router: Router,
+	public longTimer;
+	public shortTimer;
+
+	constructor(
+		private router: Router,
 		private imageCaptionService: ImageCaptionService) {
 	}
 
@@ -35,24 +39,41 @@ export class SlotMachineComponent implements OnInit {
  	}
 
 	ngOnInit(): void {
+		this.longTimer = setTimeout(() => this.navigateToStart(), 15000);
 		jQuery('.slot').jSlots({
 	        number: 3,
 	        spinner: '#playBtn',
+	        onStart: () => {
+        		if (this.longTimer) {
+        			clearTimeout(this.longTimer);
+        		}
+	        },
 	        onEnd: finalNums => {
 	        	this.showReward = true;
         		this.winner = true;
-        		this.message = "You win!";
+        		this.message = "You win! Grab your snack!";
         		this.spinning = true;
         		this.imageCaptionService.sendVend();
         		jQuery('#playBtn').attr('id', 'blah');
         		jQuery('.rewardarea').css('opacity', 1);
-	        	setTimeout(() => {this.router.navigate(['/rating']);}, 3000000);
+        		this.shortTimer = setTimeout(() => this.navigateToStart(), 3000);
 	        	// dispense candy
 	        }
 	    });
 	}
 
+	private navigateToStart(): void {
+		if (this.shortTimer) {
+			clearTimeout(this.shortTimer);
+		}
+		if (this.longTimer) {
+			clearTimeout(this.longTimer);
+		}
+		this.router.navigate(['/rating']);
+	}
+
 	getWinner(finalNums) {
 		return true;
 	}
+
 }

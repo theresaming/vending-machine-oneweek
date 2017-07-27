@@ -20,10 +20,12 @@ export class ImageCaptionService {
 		var base = 'http://localhost:5000/static/assets/images/'
 		var img = this.images[Math.floor(Math.random() * this.images.length)];
 		return new Promise(resolve => {
+			setTimeout(() => {
 			resolve({
 				path: base + img.image,
 				caption: img.caption
 			})
+			}, 3000);
 		});
 
 		// return new Promise(resolve => {

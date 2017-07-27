@@ -12,9 +12,10 @@ export class ImageRatingComponent implements OnInit {
   private imageUrl: string = "";
   private caption: string = "";
   private starsHighlighted: number = 0;
-  
+
   private imagesRated: number = 0;
   public loadingImage = false;
+  public firstLoad = false;
 
   @Output() onRated = new EventEmitter<number>();
 
@@ -25,6 +26,7 @@ export class ImageRatingComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.loadingImage = true;
     this.getImage();
 
     console.log('init!');
@@ -97,6 +99,7 @@ export class ImageRatingComponent implements OnInit {
       caption: this.caption
     });
     console.log("rated!");
+    this.loadingImage = true;
     this.onRated.emit(num);
     this.imagesRated++;
     if (this.imagesRated < 10) {
@@ -131,12 +134,16 @@ export class ImageRatingComponent implements OnInit {
   }
 
   public getImage(): void {
-    this.loadingImage = true;
     this.imageService.getRandomImage().then((img) => {
       console.log(img);
-      this.loadingImage = false;
       this.imageUrl = img.path;
       this.caption = img.caption;
     });
+  }
+
+  imageLoad() {
+    this.loadingImage = false;
+    this.firstLoad = true;
+    jQuery('.caption').css('max-width', jQuery('.image-wrap img').css('width'));
   }
 }

@@ -1,8 +1,13 @@
 <div class="container imagearea">
 	<h2 class="howaccurate">How accurate is this <span class="italicaccent">Alt Text</span>?</h2>
 	<div class="image">
-		<img style="max-height: 85%" src="{{ imageUrl }}" (click)="sendRating(100)" />
-		<p class="caption">{{ caption }}</p>
+		<div class="image-wrap">
+			<img [ngStyle]="{'opacity': loadingImage ? 0.3 : 1}" src="{{ imageUrl }}" (load)="imageLoad()" />
+			<i *ngIf="loadingImage" class="fa fa-spinner fa-spin imageloader" style="font-family: FontAwesome; font-size:48px"></i> 
+			<div *ngIf="firstLoad" class="captionwrap">
+				<p class="caption italicaccent">{{ caption }}</p>
+			</div>
+		</div>
 	</div>
 </div>
 <div class="container ratingarea">
