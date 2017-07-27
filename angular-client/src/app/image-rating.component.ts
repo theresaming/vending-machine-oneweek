@@ -93,10 +93,6 @@ export class ImageRatingComponent implements OnInit {
 
   starClick(num) {
     console.log("doing click event!");
-    setTimeout(() => {
-      jQuery('.ratingarea .star').removeClass('highlight');
-      jQuery('.ratingarea path').css('fill', '');
-    }, 500);
     this.imageService.sendRating({
       src: this.imageUrl,
       rating: num,
@@ -148,6 +144,8 @@ export class ImageRatingComponent implements OnInit {
   imageLoad() {
     this.loadingImage = false;
     this.firstLoad = true;
+    jQuery('.ratingarea .star').removeClass('highlight');
+    jQuery('.ratingarea path').css('fill', '');
     jQuery('.caption').css('max-width', jQuery('.image-wrap img').css('width'));
   }
 }
