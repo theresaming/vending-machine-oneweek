@@ -54,15 +54,15 @@ export class SlotMachineComponent implements OnInit {
 		};
 		var endNums;
 		var win;
-		if (Math.random() < 0.15) {
-			endNums = winOptions.losers[Math.floor(Math.random() * winOptions.losers.length)];
-			console.log("lose", endNums);
-			win = false;
-		} else {
+		// if (false) {
+		// 	endNums = winOptions.losers[Math.floor(Math.random() * winOptions.losers.length)];
+		// 	console.log("lose", endNums);
+		// 	win = false;
+		// } else {
 			endNums = winOptions.winners[Math.floor(Math.random() * winOptions.winners.length)];
 			console.log("win", endNums);
 			win = true;
-		}
+		// }
 		jQuery('.slot').jSlots({
 	        number: 3,
 	        spinner: '#playBtn',
