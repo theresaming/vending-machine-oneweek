@@ -25,7 +25,7 @@ export class ImageCaptionService {
 				path: base + img.image,
 				caption: img.caption
 			})
-			}, 3000);
+			}, 10);
 		});
 
 		// return new Promise(resolve => {
