@@ -10,7 +10,7 @@
 var express = require('express');
 var request = require('request');
 
-var python_endpoint = '';
+var python_endpoint = 'http://10.104.164.174:7000';
 
 var app = express();
 
@@ -20,10 +20,11 @@ app.get('/', function(req, res) {
 
 app.post('/api/vend', function(req, res) {
   request.post(
-      python_endpoint,
+      python_endpoint + '/api/vend',
       {},
       function (error, response, body) {
           console.log(error, response, body);
+          res.status(200).end();
       }
   );
 });
