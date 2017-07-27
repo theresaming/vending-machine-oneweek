@@ -28,6 +28,10 @@ img {
     padding: 10px;
 }
 
+img.kitkat {
+    padding-top: 18px;
+}
+
 .reels-container {
     text-align: center;
 }
@@ -37,5 +41,9 @@ img {
 }
 
 .slotmachine {
-    margin-top: 265px;
+    /*margin-top: 265px;*/
+}
+
+.slotmachine > div {
+    margin: -50px;
 }
