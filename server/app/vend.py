@@ -8,6 +8,7 @@ def vending():
     connected = False
     while not connected:
         fromAndroid = ser.read()
+        print(fromAndroid)
         if fromAndroid == b'1':
             connected = True
 
@@ -15,9 +16,11 @@ def vending():
     # print(x)
     ser.write(b'1')
 
-    while True:
-        if (ser.read() != b'0'):
-            print(ser.read())
-            ser.write(b'1');
+    if (ser.read() != b'0'):
+        print(ser.read()== b'0')
+        ser.read()
 
     ser.close()
+
+
+vending()
