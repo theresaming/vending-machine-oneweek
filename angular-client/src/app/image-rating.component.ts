@@ -144,6 +144,8 @@ export class ImageRatingComponent implements OnInit {
   imageLoad() {
     this.loadingImage = false;
     this.firstLoad = true;
+    jQuery('.ratingarea .star').removeClass('highlight');
+    jQuery('.ratingarea path').css('fill', '');
     jQuery('.caption').css('max-width', jQuery('.image-wrap img').css('width'));
   }
 }

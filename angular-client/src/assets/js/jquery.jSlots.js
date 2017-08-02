@@ -100,7 +100,7 @@
 
             // clone lists
             for (var i = base.options.number - 1; i >= 0; i--){
-                base.allSlots.push( new base.Slot() );
+                base.allSlots.push( new base.Slot(i + 1) );
             }
 
         };
@@ -114,14 +114,14 @@
         };
 
         // Slot contstructor
-        base.Slot = function() {
+        base.Slot = function(i) {
 
             this.spinSpeed = 0;
             this.el = base.$el.clone().appendTo(base.$wrapper)[0];
             this.$el = $(this.el);
             this.loopCount = 0;
             this.number = 0;
-
+            this.slotNum = i;
         };
 
 
@@ -161,8 +161,13 @@
 
                 var that = this;
 
-                var endNum = base.randomRange( 1, base.liCount );
-
+                var endNum;
+                if (base.options.endNums) {
+                    endNum = base.options.endNums[this.slotNum - 1];
+                } else {
+                    endNum = base.randomRange( 1, base.liCount );
+                }
+                // var endNum = base.options.endNums
                 var finalPos = - ( (base.$liHeight * endNum) - base.$liHeight );
                 var finalSpeed = ( (this.spinSpeed * 0.5) * (base.liCount) ) / endNum;
                 var notified = false;
