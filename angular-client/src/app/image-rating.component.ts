@@ -102,7 +102,7 @@ export class ImageRatingComponent implements OnInit {
     this.loadingImage = true;
     this.onRated.emit(num);
     this.imagesRated++;
-    if (this.imagesRated < 10) {
+    if (this.imagesRated < 2) {
       this.getImage();
     }
   }

@@ -20,7 +20,7 @@ export class RatingComponent {
 	onRated(event, progressBar): void {
 		console.log("rating event:", event);
 		this.numRated++;
-		if (this.numRated == 10) {
+		if (this.numRated == 2) {
 			setTimeout(() => this.router.navigate(['/slotmachine']), 1000);
 		}
 		progressBar.setProgress(this.numRated);

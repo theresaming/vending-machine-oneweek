@@ -22,7 +22,7 @@ export class ProgressBarComponent implements OnInit {
 
   public getUnactivatedCircles(): Array<number> {
     let arr = [];
-    for (let i = this.curr + 1; i <= 10; i++) {
+    for (let i = this.curr + 1; i <= 2; i++) {
       arr.push(i);
     }
     return arr;
@@ -34,13 +34,13 @@ export class ProgressBarComponent implements OnInit {
       clearTimeout(this.timeout);
     }
     this.timeout = setInterval(() => {
-      if (this.curr < 10) {
+      if (this.curr < 2) {
         this.curr++;
-        if (this.curr == 10) {
+        if (this.curr == 2) {
           alert("done");
         }
       }
-    }, 1000);
+    }, 100);
   }
 
   public setProgress(progress: number): void {
