@@ -10,6 +10,8 @@
 var express = require('express');
 var request = require('request');
 
+//fill in IP address of my Macbook
+//10.106.114.46 was Jack's
 var python_endpoint = 'http://10.106.114.46:5000';
 
 var app = express();

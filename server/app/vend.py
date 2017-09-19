@@ -2,7 +2,7 @@
 import serial
 def vending():
 
-    ser = serial.Serial("COM3", 9600, timeout = 1)
+    ser = serial.Serial("/dev/tty.usbmodem14111", 9600, timeout = 1)
 
     #connected to the android
     connected = False

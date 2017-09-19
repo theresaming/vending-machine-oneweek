@@ -6,7 +6,7 @@ Servo servo1;
 const int SERVO_PIN = 2;
 const int ZERO = 94;
 
-const int NEOPIXELS_PIN1 = 12; 
+const int NEOPIXELS_PIN1 = 10; 
 const int NEOPIXELS_PIN2 = 13; 
 const int NUM_NEOPIXELS_EACH_STRIP = 11;
 Adafruit_NeoPixel left_strip = Adafruit_NeoPixel(NUM_NEOPIXELS_EACH_STRIP, NEOPIXELS_PIN1, NEO_GRB + NEO_KHZ800);
