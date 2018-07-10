@@ -1,0 +1,37 @@
+<div class="slotmachine" style="height: 100vh; display: flex; align-items: center; justify-content: center; flex-wrap: wrap">
+    <div class="slotwrap">
+        <h2 style="margin: 0; font-size: 38px">Spin for your <span class="italicaccent">Snack</span></h2>
+        <div class="reels-container">
+        	<ul class="slot">
+                <li>
+                    <img class="kitkat" src="assets/img/kitkat.png" />
+                </li>
+        		<li>
+        			<img class="kitkat" src="assets/img/kitkat.png" />
+        		</li>
+        		<li>
+        			<img class="kitkat" src="assets/img/kitkat.png" />
+        		</li>
+        		<li>
+        			<img src="assets/img/lolly.png" />
+        		</li>
+        		<li>
+        			<img class="kitkat" src="assets/img/kitkat.png" />
+        		</li>
+        		<li>
+        			<img src="assets/img/lolly.png" />
+        		</li>
+        		<li>
+        			<img src="assets/img/lolly.png" />
+        		</li>
+        	</ul>
+        </div>
+        <div class="slotbutton">
+            <!-- this button will start the spin -->
+            <input class="spinButton" type="button" id="playBtn" value="Spin!">
+            <div style="opacity: 0" class="rewardarea" style="margin: 50px">
+            {{ message }}
+            </div>
+        </div>
+    </div>
+</div>
