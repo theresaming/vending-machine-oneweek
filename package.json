@@ -1,0 +1,19 @@
+{
+  "name": "vending-machine-oneweek",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/theresaming/vending-machine-oneweek.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/theresaming/vending-machine-oneweek/issues"
+  },
+  "homepage": "https://github.com/theresaming/vending-machine-oneweek#readme"
+}
