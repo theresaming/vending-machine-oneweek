@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ImageCaptionService } from './image-caption.service';
 
-// import * as jQuery from 'jquery';
-declare var jQuery: any;
+import * as jQuery from 'jquery';
+// declare var jQuery: any;
 // import 'assets/js/jquery.jSlots.js';
 
 @Component({

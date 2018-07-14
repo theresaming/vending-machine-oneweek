@@ -1,7 +1,8 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { ImageCaptionService } from './image-caption.service';
 
-declare var jQuery: any;
+import * as jQuery from 'jquery';
+// declare var jQuery: any;
 
 @Component({
   selector: 'image-rating',
