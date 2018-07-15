@@ -13,6 +13,7 @@ export class ImageRatingComponent implements OnInit {
   private imageUrl: string = "";
   private caption: string = "";
   private starsHighlighted: number = 0;
+  private category: string = "Adidas";
 
   private imagesRated: number = 0;
   public loadingImage = false;

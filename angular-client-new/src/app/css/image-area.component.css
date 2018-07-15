@@ -1,9 +1,18 @@
+.howaccurate {
+    font-size: 27px;
+    margin-top: 15px;
+    padding-top: 20px;
+}
+
 .imagearea {
-	text-align: center;
+    text-align: center;
+    background-color: #EBEBEB;
+    height: 300px;
+    width: 100;
 }
 
 .image-wrap {
-	height: 80%;
+	height: 30%;
 	display: inline-block;
 	background-color: #222;
 	position: relative;
@@ -13,8 +22,13 @@
 	max-height: 100%;
 }
 
+.triangle {
+    background-image: url('../../assets/img/triangle.png');
+    background-repeat: no-repeat;
+}
+
 .image {
-	height: 100%;
+	height: 20%;
     display: flex;
     align-items: center;
     justify-content: center;

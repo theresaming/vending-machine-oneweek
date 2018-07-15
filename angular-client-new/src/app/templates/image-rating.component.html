@@ -1,18 +1,18 @@
 <div class="container imagearea">
-	<h2 class="howaccurate">How accurate is this <span class="italicaccent">Alt Text</span>?</h2>
+	<h2 class="howaccurate">The following images contain <span class="italicaccent">{{ category }}</span></h2>
 	<div class="image">
 		<div class="image-wrap">
-			<img [ngStyle]="{'opacity': loadingImage ? 0.3 : 1}" src="{{ imageUrl }}" (load)="imageLoad()" />
+			<!-- <img [ngStyle]="{'opacity': loadingImage ? 0.3 : 1}" src="{{ imageUrl }}" (load)="imageLoad()" /> -->
 			<i *ngIf="loadingImage" class="fa fa-spinner fa-spin imageloader" style="font-family: FontAwesome; font-size:48px"></i> 
 			<div *ngIf="firstLoad" class="captionwrap">
 				<p class="caption italicaccent">{{ caption }}</p>
 			</div>
+			<div class="triangle"></div>
 		</div>
 	</div>
 </div>
 <div class="container ratingarea">
-	<!-- <span *ngFor="let star of getStars()"> -->
-	<span (click)="starClick(1)" id="img1" class="star">
+	<!-- <span (click)="starClick(1)" id="img1" class="star">
 	<img class="svg" src="assets/img/pointed_star.svg" />
 	</span>
 	<span (click)="starClick(2)" id="img2" class="star">
@@ -26,6 +26,13 @@
 	</span>
 	<span (click)="starClick(5)" id="img5" class="star">
 	<img class="svg" src="assets/img/pointed_star.svg" />
+	</span> -->
+	<span (click)="skip()" class="skip">
+		<img src="../../assets/img/skip.png"/>
+	</span>
+
+	<span (click)="verify()" class="verify">
+		<img src="../../assets/img/verify.png"/>
 	</span>
 		<!-- <img *ngFor="let star of getStars()" (mouseenter)="setStars(star.num)" (click)="sendRating(star.num)" src="assets/img/pointed_star.svg" [ngStyle]="{'fill': star.backgroundColor}" /> -->
 	<!-- </span> -->
