@@ -1,15 +1,27 @@
 <div class="container imagearea">
 	<h2 class="howaccurate">The following images contain <span class="italicaccent">{{ category }}</span></h2>
-	<div class="image">
+	<div class="image-grid">
 		<div class="image-wrap">
 			<!-- <img [ngStyle]="{'opacity': loadingImage ? 0.3 : 1}" src="{{ imageUrl }}" (load)="imageLoad()" /> -->
+			<div class="image-display">
+				<div class="row">
+					<img class="image" src="../../assets/img/adidas1.jpg">
+					<img class="image" src="../../assets/img/adidas2.jpg">
+					<img class="image" src="../../assets/img/adidas3.jpg">
+				</div>
+			</div>
 			<i *ngIf="loadingImage" class="fa fa-spinner fa-spin imageloader" style="font-family: FontAwesome; font-size:48px"></i> 
 			<div *ngIf="firstLoad" class="captionwrap">
-				<p class="caption italicaccent">{{ caption }}</p>
+				<p class="caption italicaccent">where</p>
 			</div>
 			<div class="triangle"></div>
 		</div>
 	</div>
+</div>
+<div class="container evaluatearea">
+	<h2 class="verify-images">
+		Select the following images which also contain <span class="italicaccent">{{ category }}</span>
+	</h2>
 </div>
 <div class="container ratingarea">
 	<!-- <span (click)="starClick(1)" id="img1" class="star">
@@ -27,6 +39,15 @@
 	<span (click)="starClick(5)" id="img5" class="star">
 	<img class="svg" src="assets/img/pointed_star.svg" />
 	</span> -->
+	<div class="image-wrap">
+		<div class="image-display">
+			<div class="row">
+				<img class="image" src="../../assets/img/adidas1.jpg">
+				<img class="image" src="../../assets/img/adidas2.jpg">
+				<img class="image" src="../../assets/img/adidas3.jpg">
+			</div>
+		</div>
+	</div>
 	<span (click)="skip()" class="skip">
 		<img src="../../assets/img/skip.png"/>
 	</span>

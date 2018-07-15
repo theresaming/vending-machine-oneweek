@@ -1,8 +1,15 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { ImageCaptionService } from './image-caption.service';
+import * as DB from "documentdb-typescript";
 
 import * as jQuery from 'jquery';
 // declare var jQuery: any;
+
+const url = 'https://oneweek-vending-machine.documents.azure.com:443/';
+const masterkey = 'Cn1yLE1m2CZ2cxErvMDbcVV2nLg9EK24nw7hEOVNsCeUUXy1Evw2f422AaCrErjVOYKg7mhymio6J6m3wApwtw==';
+
+const client = new DB.Client(url, masterkey);
+
 
 @Component({
   selector: 'image-rating',
@@ -29,7 +36,8 @@ export class ImageRatingComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadingImage = true;
-    this.getImage();
+    // this.getImage();
+    // main(url, masterkey);
 
     console.log('init!');
     var that = this;
@@ -150,4 +158,23 @@ export class ImageRatingComponent implements OnInit {
     jQuery('.ratingarea path').css('fill', '');
     jQuery('.caption').css('max-width', jQuery('.image-wrap img').css('width'));
   }
+}
+
+// Example: create and delete a collection
+async function main(url, masterKey) {
+  var client = new DB.Client(url, masterKey);
+  // console.log(client);
+  // var db = new Database("data", client);
+
+  // // these are all the same:
+  // var coll = new Collection("categories", db);
+  // var coll2 = new Collection("images", db);
+  
+  // console.log(coll);
+  // console.log(coll2);
+  // // ... or just the collection
+  // await coll.openOrCreateAsync();
+
+  // // ... or nothing (fails if not found)
+  // await coll.openAsync();
 }

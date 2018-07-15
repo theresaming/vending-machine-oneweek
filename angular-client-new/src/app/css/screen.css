@@ -134,10 +134,6 @@ img {
   line-height: 300px;
   margin: 30px 0 10px;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
-  -moz-transition: 0.15s;
-  -o-transition: 0.15s;
-  -webkit-transition: 0.15s;
-  transition: 0.15s;
 }
 
 /* line 78, ../sass/screen.scss */
