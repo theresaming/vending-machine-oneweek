@@ -1,22 +1,29 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Injectable } from '@angular/core';
+// import { HttpClient } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { ImageCaptionService } from './image-caption.service';
-import * as DB from "documentdb-typescript";
-
 import * as jQuery from 'jquery';
 // declare var jQuery: any;
 
 const url = 'https://oneweek-vending-machine.documents.azure.com:443/';
 const masterkey = 'Cn1yLE1m2CZ2cxErvMDbcVV2nLg9EK24nw7hEOVNsCeUUXy1Evw2f422AaCrErjVOYKg7mhymio6J6m3wApwtw==';
-
-const client = new DB.Client(url, masterkey);
-
+const db = 'https://oneweek-vending-machine.documents.azure.com/dbs/';
 
 @Component({
   selector: 'image-rating',
   templateUrl: './templates/image-rating.component.html',
-  styleUrls: ['css/screen.css', 'css/image-area.component.css']
+  styleUrls: ['css/screen.css', 'css/image-area.component.css'],
+  providers: [HttpClient]
 })
+
+@Injectable()
 export class ImageRatingComponent implements OnInit {
+  constructor(
+    private imageService: ImageCaptionService,
+    private httpClient: HttpClient
+    ) {
+  }
+
   private imageUrl: string = "";
   private caption: string = "";
   private starsHighlighted: number = 0;
@@ -28,16 +35,10 @@ export class ImageRatingComponent implements OnInit {
 
   @Output() onRated = new EventEmitter<number>();
 
-  constructor(
-        private imageService: ImageCaptionService,
-        ) {
-  }
-
-
   ngOnInit(): void {
     this.loadingImage = true;
     // this.getImage();
-    // main(url, masterkey);
+    console.log(this.getDatabase(url, masterkey));
 
     console.log('init!');
     var that = this;
@@ -150,6 +151,11 @@ export class ImageRatingComponent implements OnInit {
       this.caption = img.caption;
     });
   }
+  public getDatabase(url, masterKey): any {
+    return this.httpClient.get(url + 'data/images', {headers: {
+        masterKey
+      }});
+  }
 
   imageLoad() {
     this.loadingImage = false;
@@ -158,23 +164,4 @@ export class ImageRatingComponent implements OnInit {
     jQuery('.ratingarea path').css('fill', '');
     jQuery('.caption').css('max-width', jQuery('.image-wrap img').css('width'));
   }
-}
-
-// Example: create and delete a collection
-async function main(url, masterKey) {
-  var client = new DB.Client(url, masterKey);
-  // console.log(client);
-  // var db = new Database("data", client);
-
-  // // these are all the same:
-  // var coll = new Collection("categories", db);
-  // var coll2 = new Collection("images", db);
-  
-  // console.log(coll);
-  // console.log(coll2);
-  // // ... or just the collection
-  // await coll.openOrCreateAsync();
-
-  // // ... or nothing (fails if not found)
-  // await coll.openAsync();
 }
