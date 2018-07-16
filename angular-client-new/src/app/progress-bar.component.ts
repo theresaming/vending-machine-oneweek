@@ -22,7 +22,7 @@ export class ProgressBarComponent implements OnInit {
 
   public getUnactivatedCircles(): Array<number> {
     let arr = [];
-    for (let i = this.curr + 1; i <= 2; i++) {
+    for (let i = this.curr + 1; i <= 5; i++) {
       arr.push(i);
     }
     return arr;

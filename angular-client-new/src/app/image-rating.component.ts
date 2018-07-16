@@ -153,7 +153,8 @@ export class ImageRatingComponent implements OnInit {
   }
   public getDatabase(url, masterKey): any {
     return this.httpClient.get(url + 'data/images', {headers: {
-        masterKey
+        authorization: masterKey,
+        content: 'application/json'
       }});
   }
 

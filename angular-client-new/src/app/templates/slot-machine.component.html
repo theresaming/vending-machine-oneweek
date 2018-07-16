@@ -1,4 +1,4 @@
-<div class="slotmachine" style="height: 100vh; display: flex; align-items: center; justify-content: center; flex-wrap: wrap">
+<!-- <div class="slotmachine" style="height: 100vh; display: flex; align-items: center; justify-content: center; flex-wrap: wrap">
     <div class="slotwrap">
         <h2 style="margin: 0; font-size: 38px">Spin for your <span class="italicaccent">Snack</span></h2>
         <div class="reels-container">
@@ -28,10 +28,26 @@
         </div>
         <div class="slotbutton">
             <!-- this button will start the spin -->
-            <input class="spinButton" type="button" id="playBtn" value="Spin!">
+            <!-- <input class="spinButton" type="button" id="playBtn" value="Spin!">
             <div style="opacity: 0" class="rewardarea" style="margin: 50px">
             {{ message }}
             </div>
         </div>
     </div>
-</div>
+</div> -->
+
+<div id="machine">
+	<div>Madrid</div>
+	<div>London</div>
+	<div>New York</div>
+  </div>
+  
+  <script>
+  const el = document.querySelector('#machine');
+  const machine = new SlotMachine(el, {
+	active: 1,
+	delay: 450,
+	auto: 1500
+  });
+  </script>
+  <script src="../../../node_modules/jquery-slotmachine/dist/slotmachine.min.js"></script>

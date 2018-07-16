@@ -14,7 +14,7 @@ ul {
     height: 100px;
 }
 
-/deep/ .jSlots-wrapper {
+.jSlots-wrapper {
     overflow: hidden; /* to hide the magic */
     height: 80px;
     width: 80%;

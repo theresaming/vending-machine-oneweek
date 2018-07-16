@@ -7,7 +7,7 @@
 .imagearea {
     text-align: center;
     background-color: #EBEBEB;
-    height: 300px;
+    /* height: 300px; */
     width: 100;
 }
 
@@ -79,15 +79,4 @@
 	width: 100%;
     position: absolute;
   	bottom: 0;
-}
-
-.caption {
-  font-size: 24px;
-  color: #F1C21C;
-  line-height: 32px;
- /* margin-top: -56px;*/
-  background-color: #111;
-  opacity: 0.8;
-  padding: 10px;
-  /*height: ;*/
 }
