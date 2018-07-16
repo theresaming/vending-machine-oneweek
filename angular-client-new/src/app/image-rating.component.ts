@@ -1,9 +1,7 @@
 import { Component, OnInit, EventEmitter, Output, Injectable } from '@angular/core';
-// import { HttpClient } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
 import { ImageCaptionService } from './image-caption.service';
 import * as jQuery from 'jquery';
-// declare var jQuery: any;
 
 const url = 'https://oneweek-vending-machine.documents.azure.com:443/';
 const masterkey = 'Cn1yLE1m2CZ2cxErvMDbcVV2nLg9EK24nw7hEOVNsCeUUXy1Evw2f422AaCrErjVOYKg7mhymio6J6m3wApwtw==';

@@ -1,3 +1,4 @@
+"""
 from app import db
 
 class ImageDatabase(db.Model):
@@ -11,3 +12,5 @@ class ImageDatabase(db.Model):
 
 def getImage(id):
     return ImageDatabase.query.get(int(id))
+
+"""
