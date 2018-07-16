@@ -36,18 +36,18 @@ export class SlotMachineComponent implements OnInit {
 	//         }
 	//     });
  	// }
-	public createMachine() {
-		const element = document.getElementById('machine');
-		const machine = new SlotMachine(element, { /* options */ });
-		const planeMachine = document.querySelector('machine');
-		new SlotMachine(planeMachine, {
-			active: 1,
-			delay: 450,
-			auto: 1500,
-			randomize() {
-				return this.nextIndex;
-			}
-		});
+	// public createMachine() {
+	// 	const element = document.getElementById('machine');
+	// 	const machine = new SlotMachine(element, { /* options */ });
+	// 	const planeMachine = document.querySelector('machine');
+		// new SlotMachine(planeMachine, {
+		// 	active: 1,
+		// 	delay: 450,
+		// 	auto: 1500,
+		// 	randomize() {
+		// 		return this.nextIndex;
+		// 	}
+		// });
 	}
 
 	ngOnInit(): void {
