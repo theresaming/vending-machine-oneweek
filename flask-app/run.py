@@ -1,5 +1,9 @@
 #!/usr/bin/python3
 from flask import Flask
+from pydocumentdb import documents, document_client
+
+import os, sys, urllib3, config
+
 app = Flask(__name__)
 app.run(debug=True)
 
