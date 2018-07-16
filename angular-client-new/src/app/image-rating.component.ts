@@ -116,6 +116,14 @@ export class ImageRatingComponent implements OnInit {
     }
   }
 
+  verify() {
+    console.log("clicked verify");
+
+  }
+
+  skip() {
+    console.log("clicked skip");
+  }
   public getStars(): Array<number> {
     var arr = [];
     for (let i = 1; i <= 5; i++) {

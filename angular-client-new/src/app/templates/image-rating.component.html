@@ -22,8 +22,17 @@
 	<h2 class="verify-images">
 		Select the following images which also contain <span class="italicaccent">{{ category }}</span>
 	</h2>
+	<div class="image-wrap">
+		<div class="image-display">
+			<div class="row">
+				<img class="image" src="../../assets/img/adidas1.jpg">
+				<img class="image" src="../../assets/img/adidas2.jpg">
+				<img class="image" src="../../assets/img/adidas3.jpg">
+			</div>
+		</div>
+	</div>
 </div>
-<div class="container ratingarea">
+<!-- <div class="container"> -->
 	<!-- <span (click)="starClick(1)" id="img1" class="star">
 	<img class="svg" src="assets/img/pointed_star.svg" />
 	</span>
@@ -39,23 +48,16 @@
 	<span (click)="starClick(5)" id="img5" class="star">
 	<img class="svg" src="assets/img/pointed_star.svg" />
 	</span> -->
-	<div class="image-wrap">
-		<div class="image-display">
-			<div class="row">
-				<img class="image" src="../../assets/img/adidas1.jpg">
-				<img class="image" src="../../assets/img/adidas2.jpg">
-				<img class="image" src="../../assets/img/adidas3.jpg">
-			</div>
-		</div>
-	</div>
 		<!-- <img *ngFor="let star of getStars()" (mouseenter)="setStars(star.num)" (click)="sendRating(star.num)" src="assets/img/pointed_star.svg" [ngStyle]="{'fill': star.backgroundColor}" /> -->
 	<!-- </span> -->
+<!-- </div> -->
+<div class = "buttons" style="text-align:right"> 
+	<span (click)="skip()" class="skip" style="margin-right:20px;">
+		<img src="../../assets/img/skip.png" style="width: 150px"/>
+	</span>
+	
+	<span (click)="verify()" class="verify">
+		<img src="../../assets/img/verify.png" style="width: 150px"/>
+	</span>
 </div>
-<span (click)="skip()" class="skip">
-	<img src="../../assets/img/skip.png"/>
-</span>
-
-<span (click)="verify()" class="verify">
-	<img src="../../assets/img/verify.png"/>
-</span>
 	<!-- <i *ngIf="loadingImage" class="fa fa-spinner fa-spin" style="font-family: FontAwesome; font-size:48px"></i> -->

@@ -228,3 +228,7 @@ img {
 .progress .circle.active {
   color: #F1C21C;
 }
+
+.buttons {
+  text-align: right;
+}
