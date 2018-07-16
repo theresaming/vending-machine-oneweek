@@ -7,6 +7,10 @@ import os, sys, urllib3, config
 app = Flask(__name__)
 app.run(debug=True)
 
+@app.route("/")
+def hello():
+    return "Hello World!"
+
 def get_database_link(database_id):
     return 'dbs/' + database_id
 
@@ -28,10 +32,6 @@ def get_client():
 
 # document db client global
 client = get_client()
-
-@app.route("/")
-def hello():
-    return "Hello World!"
 
 @app.route('/api/get/<string:db_id>/<string:coll_id>/<string:doc_id>', methods=['GET'])
 def get_doc(db_id, coll_id, doc_id):
