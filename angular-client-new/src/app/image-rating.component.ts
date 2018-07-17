@@ -20,10 +20,11 @@ export class ImageRatingComponent implements OnInit {
   private starsHighlighted: number = 0;
   private category: string = "Adidas";
   private numImages: number = 5;
-  private imagesSelected: Array<number> = [];
+  private imagesSelected: Array<number> = [this.numImages];
   private imagesRated: number = 0;
   public loadingImage = false;
   public firstLoad = false;
+  private numCategoriesCompleted: number = 0;
 
   @Output() onRated = new EventEmitter<number>();
 
@@ -58,9 +59,9 @@ export class ImageRatingComponent implements OnInit {
 
   imageClick(num) {
     // console.log("clicking image " + num);
-    var n = jQuery("#img" + num).css("border-color");
+    var color = jQuery("#img" + num).css("border-color");
     // console.log(n);
-    if (n.replace(/\D+/g, '') === '0000') {
+    if (color.replace(/\D+/g, '') === '0000') {
       //activate
       jQuery('#img' + num).css('border-color', '#f1c21c');
       jQuery('#img' + num).addClass('activated');
@@ -73,30 +74,24 @@ export class ImageRatingComponent implements OnInit {
     }
   }
 
-  starClick(num) {
-    console.log("doing click event!");
-    this.imageService.sendRating({
-      src: this.imageUrl,
-      rating: num,
-      caption: this.caption
-    });
-    console.log("rated!");
-    this.loadingImage = true;
-    this.onRated.emit(num);
-    this.imagesRated++;
-    if (this.imagesRated < 2) {
-      this.getImage();
-    }
-  }
-
-  verify() {
+  verify(): Array<number> {
+    var arr = new Array(this.numImages).fill(0);
+    
     console.log("clicked verify");
-
+    for (let i = 1; i <= this.numImages; i++) {
+      var indexOfActivated = jQuery("#img" + i).attr('class').indexOf('activated');
+      if (indexOfActivated !== -1) {
+        arr[i-1] = 1;
+      }
+      this.numCategoriesCompleted += 1;
+    }
+    return arr;
   }
 
   skip() {
     console.log("clicked skip");
   }
+
   public getImages(): Array<number> {
     var arr = [];
     for (let i = 0; i <= 6; i++) {
@@ -109,6 +104,21 @@ export class ImageRatingComponent implements OnInit {
     return arr;
   }
 
+  starClick(num) {
+    console.log("doing click event!");
+    // this.imageService.sendRating({
+    //   src: this.imageUrl,
+    //   rating: num,
+    //   caption: this.caption
+    // });
+    console.log("rated!");
+    this.loadingImage = true;
+    this.onRated.emit(num);
+    this.imagesRated++;
+    if (this.imagesRated < 2) {
+      this.getImage();
+    }
+  }
   public setStars(stars: number): void {
     console.log("set stars!", stars);
     this.starsHighlighted = stars;
@@ -119,9 +129,9 @@ export class ImageRatingComponent implements OnInit {
     this.setStars(0);
   }
 
-  public sendRating(star: number): void {
-    console.log("rating is", star);
-  }
+  // public sendRating(star: number): void {
+  //   console.log("rating is", star);
+  // }
 
   public getImage(): void {
     this.imageService.getRandomImage().then((img) => {

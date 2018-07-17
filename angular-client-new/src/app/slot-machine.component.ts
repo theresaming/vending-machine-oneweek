@@ -51,8 +51,8 @@ export class SlotMachineComponent implements OnInit {
 	// }
 
 	ngOnInit(): void {
-		this.createMachine();
-		this.longTimer = setTimeout(() => this.navigateToStart(), 20000);
+	// 	this.createMachine();
+	// 	this.longTimer = setTimeout(() => this.navigateToStart(), 20000);
 		var winOptions = {
 			winners: [
 				[2, 3, 5],
@@ -65,45 +65,45 @@ export class SlotMachineComponent implements OnInit {
 				[6, 7, 2]
 			]
 		};
-		var endNums;
-		var win;
-		if (false) {
-			endNums = winOptions.losers[Math.floor(Math.random() * winOptions.losers.length)];
-			console.log("lose", endNums);
-			win = false;
-		} else {
-			endNums = winOptions.winners[Math.floor(Math.random() * winOptions.winners.length)];
-			console.log("win", endNums);
-			win = true;
-		}
-		jQuery('.slot').jSlots({
-	        number: 3,
-	        spinner: '#playBtn',
-	        endNums: endNums,
-	        onStart: () => {
-        		if (this.longTimer) {
-        			clearTimeout(this.longTimer);
-        		}
-	        },
-	        onEnd: finalNums => {
-	        	this.showReward = true;
-        		this.winner = true;
-        		var timeout;
-        		if (win) {
-        			this.message = "You win! Grab your snack!";
-        			this.imageCaptionService.sendVend();
-        			timeout = 7000;
-        		} else {
-        			this.message = "Sorry, no snack this time!";
-        			timeout = 3000;
-        		}
-        		this.spinning = true;
-        		jQuery('#playBtn').attr('id', 'blah');
-        		jQuery('.rewardarea').css('opacity', 1);
-        		this.shortTimer = setTimeout(() => this.navigateToStart(), timeout);
-	        	// dispense candy
-	        }
-	    });
+	// 	var endNums;
+	// 	var win;
+	// 	if (false) {
+	// 		endNums = winOptions.losers[Math.floor(Math.random() * winOptions.losers.length)];
+	// 		console.log("lose", endNums);
+	// 		win = false;
+	// 	} else {
+	// 		endNums = winOptions.winners[Math.floor(Math.random() * winOptions.winners.length)];
+	// 		console.log("win", endNums);
+	// 		win = true;
+	// 	}
+	// 	jQuery('.slot').jSlots({
+	//         number: 3,
+	//         spinner: '#playBtn',
+	//         endNums: endNums,
+	//         onStart: () => {
+    //     		if (this.longTimer) {
+    //     			clearTimeout(this.longTimer);
+    //     		}
+	//         },
+	//         onEnd: finalNums => {
+	//         	this.showReward = true;
+    //     		this.winner = true;
+    //     		var timeout;
+    //     		if (win) {
+    //     			this.message = "You win! Grab your snack!";
+    //     			this.imageCaptionService.sendVend();
+    //     			timeout = 7000;
+    //     		} else {
+    //     			this.message = "Sorry, no snack this time!";
+    //     			timeout = 3000;
+    //     		}
+    //     		this.spinning = true;
+    //     		jQuery('#playBtn').attr('id', 'blah');
+    //     		jQuery('.rewardarea').css('opacity', 1);
+    //     		this.shortTimer = setTimeout(() => this.navigateToStart(), timeout);
+	//         	// dispense candy
+	//         }
+	//     });
 	}
 
 	// private navigateToStart(): void {
