@@ -1,24 +1,17 @@
 import { Component, OnInit, EventEmitter, Output, Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { ImageCaptionService } from './image-caption.service';
 import * as jQuery from 'jquery';
-
-const url = 'https://oneweek-vending-machine.documents.azure.com:443/';
-const masterkey = 'Cn1yLE1m2CZ2cxErvMDbcVV2nLg9EK24nw7hEOVNsCeUUXy1Evw2f422AaCrErjVOYKg7mhymio6J6m3wApwtw==';
-const db = 'https://oneweek-vending-machine.documents.azure.com/dbs/';
 
 @Component({
   selector: 'image-rating',
   templateUrl: './templates/image-rating.component.html',
   styleUrls: ['css/screen.css', 'css/image-area.component.css'],
-  providers: [HttpClient]
 })
 
 @Injectable()
 export class ImageRatingComponent implements OnInit {
   constructor(
     private imageService: ImageCaptionService,
-    private httpClient: HttpClient
     ) {
   }
 
@@ -35,8 +28,6 @@ export class ImageRatingComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadingImage = true;
-    // this.getImage();
-    console.log(this.getDatabase(url, masterkey));
 
     console.log('init!');
     var that = this;
@@ -100,6 +91,10 @@ export class ImageRatingComponent implements OnInit {
     })
   }
 
+  imageClick(num) {
+    console.log("clicking image " + num);
+
+  }
   starClick(num) {
     console.log("doing click event!");
     this.imageService.sendRating({
@@ -156,12 +151,6 @@ export class ImageRatingComponent implements OnInit {
       this.imageUrl = img.path;
       this.caption = img.caption;
     });
-  }
-  public getDatabase(url, masterKey): any {
-    return this.httpClient.get(url + 'data/images', {headers: {
-        authorization: masterKey,
-        content: 'application/json'
-      }});
   }
 
   imageLoad() {

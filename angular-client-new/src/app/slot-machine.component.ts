@@ -11,15 +11,15 @@ import * as jQuery from 'jquery';
 	styleUrls: ['css/slot-machine.component.css', 'css/screen.css']
 })
 export class SlotMachineComponent implements OnInit {
-	// public showReward = false;
-	// public winner = false;
-	// public hershey = [1, 2, 4];
-	// public lolly = [3, 5, 6];
-	// public message = "";
-	// public spinning = false;
+	public showReward = false;
+	public winner = false;
+	public hershey = [1, 2, 4];
+	public lolly = [3, 5, 6];
+	public message = "";
+	public spinning = false;
 
-	// public longTimer;
-	// public shortTimer;
+	public longTimer;
+	public shortTimer;
 
 	constructor(
 		private router: Router,
@@ -48,62 +48,62 @@ export class SlotMachineComponent implements OnInit {
 		// 		return this.nextIndex;
 		// 	}
 		// });
-	}
+	// }
 
 	ngOnInit(): void {
-		// this.createMachine();
-		// this.longTimer = setTimeout(() => this.navigateToStart(), 20000);
-		// var winOptions = {
-		// 	winners: [
-		// 		[2, 3, 5],
-		// 		[5, 2, 3],
-		// 		[3, 5, 5]
-		// 	],
-		// 	losers: [
-		// 		[5, 7, 2],
-		// 		[4, 2, 6],
-		// 		[6, 7, 2]
-		// 	]
-		// };
-		// var endNums;
-		// var win;
-		// if (false) {
-		// 	endNums = winOptions.losers[Math.floor(Math.random() * winOptions.losers.length)];
-		// 	console.log("lose", endNums);
-		// 	win = false;
-		// } else {
-			// endNums = winOptions.winners[Math.floor(Math.random() * winOptions.winners.length)];
-			// console.log("win", endNums);
-			// win = true;
-		// }
-		// jQuery('.slot').jSlots({
-	    //     number: 3,
-	    //     spinner: '#playBtn',
-	    //     endNums: endNums,
-	    //     onStart: () => {
-        // 		if (this.longTimer) {
-        // 			clearTimeout(this.longTimer);
-        // 		}
-	    //     },
-	    //     onEnd: finalNums => {
-	    //     	this.showReward = true;
-        // 		this.winner = true;
-        // 		var timeout;
-        // 		if (win) {
-        // 			this.message = "You win! Grab your snack!";
-        // 			this.imageCaptionService.sendVend();
-        // 			timeout = 7000;
-        // 		} else {
-        // 			this.message = "Sorry, no snack this time!";
-        // 			timeout = 3000;
-        // 		}
-        // 		this.spinning = true;
-        // 		jQuery('#playBtn').attr('id', 'blah');
-        // 		jQuery('.rewardarea').css('opacity', 1);
-        // 		this.shortTimer = setTimeout(() => this.navigateToStart(), timeout);
-	    //     	// dispense candy
-	    //     }
-	    // });
+		this.createMachine();
+		this.longTimer = setTimeout(() => this.navigateToStart(), 20000);
+		var winOptions = {
+			winners: [
+				[2, 3, 5],
+				[5, 2, 3],
+				[3, 5, 5]
+			],
+			losers: [
+				[5, 7, 2],
+				[4, 2, 6],
+				[6, 7, 2]
+			]
+		};
+		var endNums;
+		var win;
+		if (false) {
+			endNums = winOptions.losers[Math.floor(Math.random() * winOptions.losers.length)];
+			console.log("lose", endNums);
+			win = false;
+		} else {
+			endNums = winOptions.winners[Math.floor(Math.random() * winOptions.winners.length)];
+			console.log("win", endNums);
+			win = true;
+		}
+		jQuery('.slot').jSlots({
+	        number: 3,
+	        spinner: '#playBtn',
+	        endNums: endNums,
+	        onStart: () => {
+        		if (this.longTimer) {
+        			clearTimeout(this.longTimer);
+        		}
+	        },
+	        onEnd: finalNums => {
+	        	this.showReward = true;
+        		this.winner = true;
+        		var timeout;
+        		if (win) {
+        			this.message = "You win! Grab your snack!";
+        			this.imageCaptionService.sendVend();
+        			timeout = 7000;
+        		} else {
+        			this.message = "Sorry, no snack this time!";
+        			timeout = 3000;
+        		}
+        		this.spinning = true;
+        		jQuery('#playBtn').attr('id', 'blah');
+        		jQuery('.rewardarea').css('opacity', 1);
+        		this.shortTimer = setTimeout(() => this.navigateToStart(), timeout);
+	        	// dispense candy
+	        }
+	    });
 	}
 
 	// private navigateToStart(): void {
@@ -120,4 +120,4 @@ export class SlotMachineComponent implements OnInit {
 	// 	return true;
 	// }
 
-}
+// }

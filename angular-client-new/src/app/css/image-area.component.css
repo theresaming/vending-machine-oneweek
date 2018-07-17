@@ -7,26 +7,37 @@
 .imagearea {
     text-align: center;
     background-color: #EBEBEB;
-    height: 300px;
+    height: 224px;
 }
 
 .image-wrap {
-	height: 30%;
+	height: 20%;
 	display: inline-block;
 	/* background-color: #222; */
 	position: relative;
 }
 
 .image-wrap img {
-    max-height: 150px;
+    max-height: 85px;
     display:inline;
     margin: 20px;
+}
+
+.verify-image-wrap img {
+    max-height: 120px;
+    display:inline;
+    margin:20px;
+}
+
+.refimage {
+    max-height: 80px;
 }
 
 .verify-images {
     margin: 25px;
     font-size: 27px;
     text-align: left;
+    margin-top: 50px;
 }
 
 .triangle {
@@ -41,6 +52,9 @@
     justify-content: center;
 }
 
+/* .refimage {
+    
+} */
 .ratingarea {
 	text-align: center;
 }
@@ -77,4 +91,13 @@
 	width: 100%;
     position: absolute;
   	bottom: 0;
+}
+
+.info {
+    display: inline;
+    position: absolute;
+}
+
+.info img {
+    max-width: 50px;
 }
