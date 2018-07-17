@@ -19,7 +19,8 @@ export class ImageRatingComponent implements OnInit {
   private caption: string = "";
   private starsHighlighted: number = 0;
   private category: string = "Adidas";
-
+  private numImages: number = 5;
+  private imagesSelected: Array<number> = [];
   private imagesRated: number = 0;
   public loadingImage = false;
   public firstLoad = false;
@@ -30,42 +31,6 @@ export class ImageRatingComponent implements OnInit {
     this.loadingImage = true;
 
     console.log('init!');
-    var that = this;
-    jQuery('img.svg').each(function(){
-      var $img = jQuery(this);
-      var imgID = $img.attr('id');
-      var imgClass = $img.attr('class');
-      var imgURL = $img.attr('src');
-
-      jQuery.get(imgURL, function(data) {
-        // Get the SVG tag, ignore the rest
-        var $svg = jQuery(data).find('svg');
-
-        // Add replaced image's ID to the new SVG
-        if(typeof imgID !== 'undefined') {
-            $svg = $svg.attr('id', imgID);
-        }
-        // Add replaced image's classes to the new SVG
-        if(typeof imgClass !== 'undefined') {
-            $svg = $svg.attr('class', imgClass+' replaced-svg');
-        }
-
-        // Remove any invalid XML tags as per http://validator.w3.org
-        $svg = $svg.removeAttr('xmlns:a');
-
-        $svg.attr('width', '80px');
-        $svg.attr('height', '80px');
-
-        // Check if the viewport is set, if the viewport is not set the SVG wont't scale.
-        if(!$svg.attr('viewBox') && $svg.attr('height') && $svg.attr('width')) {
-            $svg.attr('viewBox', '0 0 ' + $svg.attr('height') + ' ' + $svg.attr('width'))
-        }
-
-        // Replace image with new SVG
-        $img.replaceWith($svg);
-
-      }, 'xml');
-    });
 
     jQuery('.ratingarea .star').mouseenter(function(event){
       // console.log(event);
@@ -95,14 +60,16 @@ export class ImageRatingComponent implements OnInit {
     // console.log("clicking image " + num);
     var n = jQuery("#img" + num).css("border-color");
     // console.log(n);
-    // console.log(n == 'rgba(0,0,0,0)' );
     if (n.replace(/\D+/g, '') === '0000') {
       //activate
       jQuery('#img' + num).css('border-color', '#f1c21c');
+      jQuery('#img' + num).addClass('activated');
     }
     else {
       //deactivate
       jQuery('#img' + num).css('border-color', 'rgba(0,0,0,0)');
+      jQuery('#img' + num).removeClass('activated');
+
     }
   }
 
@@ -130,9 +97,9 @@ export class ImageRatingComponent implements OnInit {
   skip() {
     console.log("clicked skip");
   }
-  public getStars(): Array<number> {
+  public getImages(): Array<number> {
     var arr = [];
-    for (let i = 1; i <= 5; i++) {
+    for (let i = 0; i <= 6; i++) {
       arr.push({
         num: i,
         highlighted: i <= this.starsHighlighted,
