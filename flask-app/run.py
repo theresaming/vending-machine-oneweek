@@ -1,32 +1,12 @@
 #!/usr/bin/python3
-from flask import Flask
-from pydocumentdb import documents, document_client
+from flask import Flask, request, jsonify
+from docdb import Client
 
-import os, sys, urllib3, config
-
-# cosmos functions
-def get_database_link(database_id):
-    return 'dbs/' + database_id
-
-def get_collection_link(database_id, collection_id):
-    return get_database_link(database_id) + '/colls/' + collection_id
-
-def get_document_link(database_id, collection_id, document_id):
-    return get_collection_link(database_id, collection_id) + '/docs/' + document_id
-
-def get_client():
-    connection_policy = documents.ConnectionPolicy()
-    connection_policy.SSLConfiguration = documents.SSLConfiguration()
-    # Try to setup the cacert.pem
-    # connection_policy.SSLConfiguration.SSLCaCerts = CaCertPath
-    # Else, disable verification
-    urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-    connection_policy.SSLConfiguration.SSLCaCerts = False
-    return document_client.DocumentClient(config.COSMOS['URI'], {'masterKey': config.COSMOS['KEY']}, connection_policy)
+import os, sys, urllib3
 
 # globals
 app = Flask(__name__)
-client = get_client()
+db = Client()
 
 # routes
 @app.route("/")
@@ -35,7 +15,15 @@ def hello():
 
 @app.route('/api/get/<string:db_id>/<string:coll_id>/<string:doc_id>', methods=['GET'])
 def get_doc(db_id, coll_id, doc_id):
-    return jsonify(client.ReadDocument(get_document_link(db_id, coll_id, doc_id)))
+    return jsonify(db.get_document(db_id, coll_id, doc_id))
+
+@app.route('/api/create/<string:db_id>/<string:coll_id>', methods=['POST'])
+def create_doc(db_id, coll_id):
+    db.create_document(db_id, coll_id, request.document)
+
+@app.route('/api/query/<string:db_id>/<string:coll_id>/<string:query>', methods=['GET'])
+def query(db_id, coll_id, query):
+    return jsonify(db.query(db_id, coll_id, f'select * from c where {query}'))
 
 # run app
 app.run(debug=True)
