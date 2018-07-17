@@ -27,6 +27,7 @@
     max-height: 120px;
     display:inline;
     margin:20px;
+    border: 5px solid transparent;
 }
 
 .refimage {

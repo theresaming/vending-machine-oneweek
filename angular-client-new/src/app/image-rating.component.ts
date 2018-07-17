@@ -92,9 +92,20 @@ export class ImageRatingComponent implements OnInit {
   }
 
   imageClick(num) {
-    console.log("clicking image " + num);
-
+    // console.log("clicking image " + num);
+    var n = jQuery("#img" + num).css("border-color");
+    // console.log(n);
+    // console.log(n == 'rgba(0,0,0,0)' );
+    if (n.replace(/\D+/g, '') === '0000') {
+      //activate
+      jQuery('#img' + num).css('border-color', '#f1c21c');
+    }
+    else {
+      //deactivate
+      jQuery('#img' + num).css('border-color', 'rgba(0,0,0,0)');
+    }
   }
+
   starClick(num) {
     console.log("doing click event!");
     this.imageService.sendRating({
