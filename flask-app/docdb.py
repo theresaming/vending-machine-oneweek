@@ -1,7 +1,7 @@
 from pydocumentdb import documents, document_client
 import urllib3, config
 
-class Client:
+class DocDbClient:
 
     def __get_database_link(self, database_id):
         return 'dbs/' + database_id
@@ -27,8 +27,14 @@ class Client:
         return self.client.ReadDocument(self.__get_document_link(db_id, coll_id, doc_id))
 
     # set document by id
-    def create_document(self, db_id, coll_id, doc_id, new_doc):
-        self.client.CreateDocument(self.__get_document_link(db_id, coll_id, doc_id), new_doc)
+    def create_document(self, db_id, coll_id, new_doc):
+        return self.client.CreateDocument(self.__get_collection_link(db_id, coll_id), new_doc)
+
+    def delete_document(self, db_id, coll_id, doc_id):
+        return self.client.DeleteDocument(self.__get_document_link(db_id, coll_id, doc_id))
+
+    def upsert_document(self, db_id, coll_id, new_doc):
+        return self.client.UpsertDocument(self.__get_collection_link(db_id, coll_id), new_doc)
 
     def query(self, db_id, coll_id, query_string):
         return list(self.client.QueryDocuments(self.__get_collection_link(db_id, coll_id), query_string))
