@@ -1,11 +1,15 @@
 from serverapi import app
-from flask import Flask, render_template
+from flask import Flask, render_template, url_for
 
 app = Flask(__name__)
 
 @app.route("/")
-def template_test():
+def home():
     return render_template("index.html")
+
+@app.route("/rate")
+def evaluate_images():
+    return render_template("image-rating.html")
 
 if __name__ == "__main__":
     app.run(debug=True)

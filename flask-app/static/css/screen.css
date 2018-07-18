@@ -111,11 +111,6 @@ img {
   /*margin: 25px;*/
 }
 
-.red-button {
-  /* background-image: url('../../assets/img/red-button.png'); */
-  z-index: 1001;
-}
-
 /* line 25, ../sass/screen.scss */
 .btn-big-red {
   background-image: url('../img/red-button.png');
