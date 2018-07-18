@@ -33,6 +33,7 @@ if __name__ == '__main__':
         exit(1)
     lines = open(sys.argv[1], 'r').readlines()[1:]
 
+    category_id = 0
     categories = {}
 
     for line in lines:
@@ -41,13 +42,8 @@ if __name__ == '__main__':
 
         # if we have not seen this category before
         if not line[0] in categories:
-            categories[line[0]] = {}
-            categories[line[0]]['name'] = line[0]
-            categories[line[0]]['ref_image_paths'] = []
-            categories[line[0]]['total_images'] = 0
-            categories[line[0]]['solved_images'] = 0
-            categories[line[0]]['judgements'] = 0
-            categories[line[0]]['skip_count'] = 0
+            categories[line[0]] = {'name': line[0], 'ref_image_paths': [], 'total_images': 0, 'solved_images': 0, 'judgement_count': 0, 'skip_count': 0, 'id': str(category_id)}
+            category_id += 1
 
         # if this is a reference image
         if line[2] == '1':
@@ -55,18 +51,14 @@ if __name__ == '__main__':
             categories[line[0]]['ref_image_paths'].append(line[1])
         else:
             # create a new image object
-            img_obj['category'] = line[0]
-            img_obj['img_url'] = line[1]
-            img_obj['is_positive'] = (line[3] == '1')
-            img_obj['judgements'] = []
-            img_obj['judgement_count'] = 0
+            img_obj = {'category': line[0], 'img_url': line[1], 'is_positive': (line[3]=='1'), 'judgements': [], 'judgement_count': 0}
             
             # update the image count of the category
             categories[line[0]]['total_images'] += 1
 
             # write the image object to the database
             print("inserting ... " + str(img_obj))
-            client.CreateDocument(get_collection_link('data', 'images'), img_obj)
+            # client.CreateDocument(get_collection_link('data', 'images'), img_obj)
 
     for key, val in categories.items():
         print("inserting ... " + str(val))
