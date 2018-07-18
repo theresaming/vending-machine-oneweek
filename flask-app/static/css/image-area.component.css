@@ -1,0 +1,104 @@
+.howaccurate {
+    font-size: 27px;
+    margin-top: 15px;
+    padding-top: 20px;
+}
+
+.imagearea {
+    text-align: center;
+    background-color: #EBEBEB;
+    height: 224px;
+}
+
+.image-wrap {
+	height: 20%;
+	display: inline-block;
+	/* background-color: #222; */
+	position: relative;
+}
+
+.image-wrap img {
+    max-height: 85px;
+    display:inline;
+    margin: 20px;
+}
+
+.verify-image-wrap img {
+    max-height: 120px;
+    display:inline;
+    margin:20px;
+    border: 5px solid transparent;
+}
+
+.refimage {
+    max-height: 80px;
+}
+
+.verify-images {
+    margin: 25px;
+    font-size: 27px;
+    text-align: left;
+    margin-top: 50px;
+}
+
+.triangle {
+    background-image: url('../../assets/img/triangle.png');
+    background-repeat: no-repeat;
+}
+
+.image {
+	height: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* .refimage {
+    
+} */
+.ratingarea {
+	text-align: center;
+}
+
+.ratingarea .star.highlight svg path {
+	fill: #F1C21C;
+}
+
+.ratingarea .star {
+	cursor: pointer;
+}
+
+.ratingarea .star {
+	width: 100px;
+	user-select: none;
+}
+
+.ratingarea {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.imageloader {
+   position: absolute;
+   left: 0;
+   right: 0;
+   top: 42%;
+   font-size: 82px;
+   color: white;
+}
+
+.captionwrap {
+	width: 100%;
+    position: absolute;
+  	bottom: 0;
+}
+
+.info {
+    display: inline;
+    position: absolute;
+}
+
+.info img {
+    max-width: 50px;
+}
