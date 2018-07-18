@@ -6,11 +6,6 @@ import os, sys, urllib3, config
 # global
 db = docdb.DocDbClient()
 
-# routes
-@app.route("/")
-def hello():
-    return "Hello World!"
-
 @app.route('/api/get/<string:db_id>/<string:coll_id>/<string:doc_id>', methods=['GET'])
 def get_doc(db_id, coll_id, doc_id):
     return jsonify(db.get_document(db_id, coll_id, doc_id))
