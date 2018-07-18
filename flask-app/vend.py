@@ -1,24 +1,33 @@
-#!/usr/bin/python3
-# # from pyduino import *
-# import serial
-# def vending():
+import serial, time
+from threading import Thread
 
-#     ser = serial.Serial("/dev/tty.usbmodem14111", 9600, timeout = 1)
+arduino = serial.Serial('/dev/cu.usbmodem1411', 9600, timeout=.1)
+time.sleep(1)
+arduino.write("123")
 
-#     #connected to the android
-#     connected = False
-#     while not connected:
-#         fromAndroid = ser.read()
-#         print(fromAndroid)
-#         if fromAndroid == b'1':
-#             connected = True
+running = True
 
-#     # x = ser.write(b'1') #trigger android
-#     # print(x)
-#     ser.write(b'1')
+def read():
+    global running
+    while running:
+        recv_data = arduino.readline()
+        if recv_data:
+            print(recv_data) #strip out the new lines for now
+            recv_data = ""
 
-#     if (ser.read() != b'0'):
-#         print(ser.read()== b'0')
-#         ser.read()
+def write():
+    global running
+    while running:
+        input_data = raw_input().strip()
+        arduino.write(input_data)
 
-#     ser.close()
+        if input_data == "stop":
+            running = False
+
+read_thread = Thread(target=read)
+write_thread = Thread(target=write)
+
+read_thread.start()
+write_thread.start()
+
+read_thread.join()
