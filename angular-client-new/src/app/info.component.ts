@@ -13,11 +13,11 @@ import { Router } from '@angular/router';
 })
 
 export class InfoComponent {
-	showOverlay = false;
+  showOverlay = false;
 
-	constructor(private router: Router) {}
+  constructor(private router: Router) {}
 
-	showInfo(): void {
-		this.showOverlay = true;
-	}
+  showInfo(): void {
+    this.showOverlay = true;
+  }
 }

@@ -6,14 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['css/screen.css']
 })
 export class ProgressBarComponent implements OnInit {
-  public curr: number = 0;
+  public curr = 0;
   public timeout: any;
 
   constructor() {
   }
 
   public getActivatedCircles(): Array<number> {
-    let arr = [];
+    const arr = [];
     for (let i = 1; i <= this.curr; i++) {
       arr.push(i);
     }
@@ -21,7 +21,7 @@ export class ProgressBarComponent implements OnInit {
   }
 
   public getUnactivatedCircles(): Array<number> {
-    let arr = [];
+    const arr = [];
     for (let i = this.curr + 1; i <= 5; i++) {
       arr.push(i);
     }
@@ -37,7 +37,7 @@ export class ProgressBarComponent implements OnInit {
       if (this.curr < 2) {
         this.curr++;
         if (this.curr == 2) {
-          alert("done");
+          alert('done');
         }
       }
     }, 100);

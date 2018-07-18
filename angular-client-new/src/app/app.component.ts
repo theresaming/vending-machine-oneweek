@@ -20,11 +20,11 @@ import { Component } from '@angular/core';
     `
 })
 export class AppComponent {
-	title = "Hello!";
-	// <slot-machine></slot-machine>
+  title = 'Hello!';
+  // <slot-machine></slot-machine>
 
-	onRated(event, progressBar): void {
-		console.log(event);
-		progressBar.reset();
-	}
+  onRated(event, progressBar): void {
+    console.log(event);
+    progressBar.reset();
+  }
 }

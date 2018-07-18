@@ -1,5 +1,8 @@
 import { Component, OnInit, EventEmitter, Output, Injectable } from '@angular/core';
 import { ImageCaptionService } from './image-caption.service';
+import { Observable } from 'rxjs/Observable';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { API_URL } from './env';
 import * as jQuery from 'jquery';
 
 @Component({
@@ -12,6 +15,7 @@ import * as jQuery from 'jquery';
 export class ImageRatingComponent implements OnInit {
   constructor(
     private imageService: ImageCaptionService,
+    private http: HttpClient
     ) {
   }
 
@@ -55,6 +59,7 @@ export class ImageRatingComponent implements OnInit {
     //   jQuery('.ratingarea path').css('fill', '');
 
     // })
+
   }
 
   imageClick(num) {
@@ -74,6 +79,7 @@ export class ImageRatingComponent implements OnInit {
   }
 
   verify(): Array<number> {
+    // refresh category, reference images, and verification images
     const arr = new Array(this.numImages).fill(0);
 
     console.log('clicked verify');
@@ -88,12 +94,20 @@ export class ImageRatingComponent implements OnInit {
   }
 
   skip() {
+    // refresh, catorgy, reference images, and verification images
     console.log('clicked skip');
   }
 
   showInfo() {
     console.log('clicked info');
   }
+
+  // GET IMAGES
+  getImages(): Observable<Document> {
+    // return this.http.get('$(API_URL)/')
+  }
+
+
 
   // public getImages(): Array<number> {
   //   const arr = [];
