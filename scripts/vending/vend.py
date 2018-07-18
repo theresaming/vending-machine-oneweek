@@ -18,7 +18,7 @@ def read():
 def write():
     global running
     while running:
-        input_data = raw_input().strip()
+        input_data = input().strip()
         arduino.write(input_data)
 
         if input_data == "stop":

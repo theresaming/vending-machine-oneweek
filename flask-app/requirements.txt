@@ -21,3 +21,4 @@ virtualenv==15.1.0
 Werkzeug==0.14.1
 WTForms==2.1
 pydocumentdb==2.3.2
+pyserial==3.4
