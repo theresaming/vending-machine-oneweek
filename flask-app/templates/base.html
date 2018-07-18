@@ -1,11 +1,11 @@
 <html>
   <head>
-    <link href="{{ url_for('static',filename='css/screen.css') }}" media="screen, projection" rel="stylesheet" type="text/css" />
+    <link href="../static/css/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="{{ url_for('static',filename='progressbar.js') }}"></script>
     {% if title %}
     <title>{{ title }}</title>
     {% else %}
-    <title>Swipe n' Snack</title>
+    <title>Swipe n' Snack Vending Machine</title>
     {% endif %}
   </head>
   <body>
@@ -28,26 +28,6 @@
     <span class="bar"></span>
     <div class="circle">
       <span class="label">5</span>
-    </div>
-    <span class="bar"></span>
-    <div class="circle">
-      <span class="label">6</span>
-    </div>
-    <span class="bar"></span>
-    <div class="circle">
-      <span class="label">7</span>
-    </div>
-    <span class="bar"></span>
-    <div class="circle">
-      <span class="label">8</span>
-    </div>
-    <span class="bar"></span>
-    <div class="circle">
-      <span class="label">9</span>
-    </div>
-    <span class="bar"></span>
-    <div class="circle">
-      <span class="label">10</span>
     </div>
 
   </div>

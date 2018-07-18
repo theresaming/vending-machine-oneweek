@@ -4,15 +4,15 @@
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
 @font-face {
   font-family: 'KlinicSlabMediumIt';
-  src: url("../assets/KlinicSlabMediumIt.otf") format("opentype");
+  src: url("../font/KlinicSlabMediumIt.otf") format("opentype");
 }
 @font-face {
   font-family: 'KlinicSlabMedium';
-  src: url("../assets/KlinicSlabMedium.otf") format("opentype");
+  src: url("../font/KlinicSlabMedium.otf") format("opentype");
 }
 @font-face {
   font-family: 'KlinicSlabLight';
-  src: url("../assets/KlinicSlabLight.otf") format("opentype");
+  src: url("../font/KlinicSlabLight.otf") format("opentype");
 }
 
 body {
@@ -118,7 +118,7 @@ img {
 
 /* line 25, ../sass/screen.scss */
 .btn-big-red {
-  background-image: url('../../assets/img/red-button.png');
+  background-image: url('../img/red-button.png');
   background-size: 100%;
   background-repeat:no-repeat;
   z-index: 1001;
@@ -137,12 +137,12 @@ img {
 }
 
 /* line 78, ../sass/screen.scss */
-/**, *:after, *:before {
+*:after, *:before {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "KlinicSlabLight";
-}*/
+}
 
 /* Form Progress */
 /* line 87, ../sass/screen.scss */
