@@ -1,0 +1,22 @@
+<div class="container progress">
+  <div class="progress-container" style="padding-top: 20px">
+  <div style="display: inline" class="progress-container" *ngFor="let index of getActivatedCircles(); last as isLast">
+    <!-- <div class="circle active">
+      <span class="label">{{ index }}</span>
+    </div> -->
+    <!-- <span class="bar" *ngIf="!(isLast && index == 2)"></span> -->
+    <!-- <div class="circle" *ngIf="isLast && index == 2">
+      <span class="label">{{ index }}</span>
+    </div> -->
+  </div>
+  <div style="display: inline" *ngFor="let index of getUnactivatedCircles(); last as isLast">
+    <div class="circle">
+      <span class="label">{{ index }}</span>
+    </div>
+    <span class="bar" *ngIf="index != 5"></span>
+    <!-- <div class="circle" *ngIf="isLast && index == 2">
+      <span class="label">{{ index }}</span>
+    </div> -->
+  </div>
+  </div>
+</div>
