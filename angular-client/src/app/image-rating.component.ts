@@ -87,7 +87,7 @@ export class ImageRatingComponent implements OnInit {
       var num = parseInt(jQuery(event.currentTarget).attr('id').substring(3));
       jQuery('.ratingarea .star').removeClass('highlight');
       jQuery('.ratingarea path').css('fill', '');
-      
+
     })
   }
 
