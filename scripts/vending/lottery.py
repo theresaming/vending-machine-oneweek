@@ -19,7 +19,11 @@ class Lottery:
     def spin(self):
         if len(self.__items) == 0:
             return -1
-        return self.__items.pop(randint(0, len(self.__items)-1))
+
+        if randing(1, 4) == 1:
+            return self.__items.pop(randint(0, len(self.__items)-1))
+        else:
+            return 0
 
     def get_num_items(self):
         return len(self.__items)
