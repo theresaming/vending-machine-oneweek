@@ -40,18 +40,19 @@
 		<img src="../static/img/info.png">
 	</span>
 </div>
+
 <div class = "buttons" style="text-align:right;margin-top: -20px;"> 
 	<a href="{{ url_for('skip') }}" class="skip" style="margin-right:20px;">
 		<img src="./static/img/skip.png" style="width: 120px"/>
 	</span>
 	
-	<a href="{{ url_for('verify') }}" class="verify">
+	<a href="{{ url_for('verify') }}" onclick="verify()" class="verify">
 		<img src="./static/img/verify.png" style="width: 120px"/>
 	</span>
 </div>
 
 <script type=text/javascript>
-	imageClick(num) {
+	function imageClick(num) {
 		// console.log("clicking image " + num);
 		var color = jQuery("#img" + num).css("border-color");
 		// console.log(n);
@@ -66,7 +67,28 @@
 		jQuery('#img' + num).removeClass('activated');
 
 		}
-  }
+	}
+	function verify() {
+		var arr = new Array(6).fill(0);
+		console.log("clicked verify");
+		for (let i = 1; i <= 6; i++) {
+			var indexOfActivated = jQuery("#img" + i).attr('class').indexOf('activated');
+			if (indexOfActivated !== -1) {
+				arr[i-1] = 1;
+			}
+		}
+		$.ajax({
+			url: "/rateimg",			
+			data: arr,
+			contentType: 'application/json;charset=UTF-8',
+			type: 'POST',
+			async: false,
+			success:function(data) {
+				boolArr = arr;
+			}
+		});
+		return boolArr;
+  	}
 </script>
 
 

@@ -8,9 +8,12 @@ app = Flask(__name__)
 def home():
     return render_template("index.html")
 
-@app.route("/rate")
+@app.route("/rate", methods=('GET', 'POST'))
 def evaluate_images():
     # print (views.get_doc("data", "categories", "4"))
+    # value = verify()
+    # print(value)
+    # return render_template("image-rating.html")
     reference = get_ref()
     category = reference[0]
     ref_img_arr = reference[1]
@@ -18,22 +21,26 @@ def evaluate_images():
     ver_url_arr = []
     for image in ver_img_arr:
         ver_url_arr.append(image['img_url'])
-    return render_template("image-rating.html", category = category, ref_img_arr = ref_img_arr, ver_img_arr = ver_url_arr, length = len(ver_url_arr))
+    return render_template("image-rating.html", category = category, ref_img_arr = ref_img_arr, ver_img_arr = ver_url_arr)
 
-@app.route("/rate")
+@app.route("/rateimg", methods=('GET', 'POST'))
 def verify():
     # increment numbers completed
     # upsert values
-    return render_template("image-rating.html")
+    if (request.method == 'POST'):
+        print("reached")
+        a = request.args.get('arr')
+        print(a)
+    return evaluate_images()
 
 @app.route("/rate")
 def skip():
     return render_template("image-rating.html")
 
 @app.route("/slotmachine")
-def slot_machin():
+def slot_machine():
     return render_template("slot-machine.html")
-    
+
 def get_ref():
     randomInteger = str(random.randint(0,20))
     value = views.get_doc("data", "categories", randomInteger)
