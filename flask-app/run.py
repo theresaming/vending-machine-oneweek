@@ -62,5 +62,4 @@ def get_verify_images(category):
     return ver_img_arr
 
 if __name__ == "__main__":
-    tasks_completed = 0
     app.run(debug=True)
