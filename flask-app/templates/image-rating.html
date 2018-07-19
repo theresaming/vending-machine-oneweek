@@ -1,5 +1,6 @@
 <head>
 	<link href="../static/css/image-area.css" media="screen, projection" rel="stylesheet" type="text/css" />
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 {% extends "base.html" %}
 {% block content %}
@@ -11,7 +12,7 @@
 			<div class="image-display">
 				<div class="row">
 					{% for image_url in ref_img_arr %}
-					<img class="refimage" src= {{ image_url }} >
+						<img class="refimage" src= {{ image_url }} >
 					{% endfor %}
 				</div>
 			</div>
@@ -27,45 +28,47 @@
 		<div class="image-display" style="text-align: center;">
 			<div class="row">
 					{% for image_url in ver_img_arr %}
-					<img class="image" src= {{ image_url }} >
+					<img onclick="imageClick({{loop.index}})" class="image" src= {{ image_url }} id="img{{loop.index}}" >
 					{% endfor %}
 			</div>
 		</div>
 	</div>
 </div>
-<!-- <div class="container"> -->
-	<!-- <span (click)="starClick(1)" id="img1" class="star">
-	<img class="svg" src="assets/img/pointed_star.svg" />
-	</span>
-	<span (click)="starClick(2)" id="img2" class="star">
-	<img class="svg" src="assets/img/pointed_star.svg" />
-	</span>
-	<span (click)="starClick(3)" id="img3" class="star">
-	<img class="svg" src="assets/img/pointed_star.svg" />
-	</span>
-	<span (click)="starClick(4)" id="img4" class="star">
-	<img class="svg" src="assets/img/pointed_star.svg" />
-	</span>
-	<span (click)="starClick(5)" id="img5" class="star">
-	<img class="svg" src="assets/img/pointed_star.svg" />
-	</span> -->
-		<!-- <img *ngFor="let star of getStars()" (mouseenter)="setStars(star.num)" (click)="sendRating(star.num)" src="assets/img/pointed_star.svg" [ngStyle]="{'fill': star.backgroundColor}" /> -->
-	<!-- </span> -->
-<!-- </div> -->
+
 <div class="info" style="margin-top:-15px">
 	<span (click)="showInfo()" class="info">
 		<img src="../static/img/info.png">
 	</span>
 </div>
 <div class = "buttons" style="text-align:right;margin-top: -20px;"> 
-	<span (click)="skip()" class="skip" style="margin-right:20px;">
+	<a href="{{ url_for('skip') }}" class="skip" style="margin-right:20px;">
 		<img src="./static/img/skip.png" style="width: 120px"/>
 	</span>
 	
-	<span (click)="verify()" class="verify">
+	<a href="{{ url_for('verify') }}" class="verify">
 		<img src="./static/img/verify.png" style="width: 120px"/>
 	</span>
 </div>
+
+<script type=text/javascript>
+	imageClick(num) {
+		// console.log("clicking image " + num);
+		var color = jQuery("#img" + num).css("border-color");
+		// console.log(n);
+		if (color.replace(/\D+/g, '') === '0000') {
+		//activate
+		jQuery('#img' + num).css('border-color', '#f1c21c');
+		jQuery('#img' + num).addClass('activated');
+		}
+		else {
+		//deactivate
+		jQuery('#img' + num).css('border-color', 'rgba(0,0,0,0)');
+		jQuery('#img' + num).removeClass('activated');
+
+		}
+  }
+</script>
+
 
 	<!-- <i *ngIf="loadingImage" class="fa fa-spinner fa-spin" style="font-family: FontAwesome; font-size:48px"></i> -->
 {% endblock %}
