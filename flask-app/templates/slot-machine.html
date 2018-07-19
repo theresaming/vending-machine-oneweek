@@ -33,19 +33,50 @@
       <button id="shuffle" type="button">Lever</button>
     </div>
 <script>
-const results = {
-  machine1: document.querySelector('#machine1Result'),
-  machine2: document.querySelector('#machine2Result'),
-  machine3: document.querySelector('#machine3Result'),
-};
+
+const num_slots = 4;
+var rigged_result = -1;
+var m1_result = 0;
+
 const btnShuffle = document.querySelector('#shuffle');
 const el1 = document.querySelector('#machine1');
 const el2 = document.querySelector('#machine2');
 const el3 = document.querySelector('#machine3');
-const machine1 = new SlotMachine(el1);
-const machine2 = new SlotMachine(el2);
-const machine3 = new SlotMachine(el3);
+
+const machine1 = new SlotMachine(el1, { active: 0, randomize() {
+  if (rigged_result != -1) {
+    m1_result = rigged_result;
+  } else {
+    m1_result = Math.floor(Math.random()*num_slots);
+  }
+  return m1_result;
+}});
+
+const machine2 = new SlotMachine(el2, { active: 1, randomize() {
+  if (rigged_result != -1) {
+    return rigged_result;
+  } else {
+    return Math.floor(Math.random()*num_slots);
+  }
+}});
+
+const machine3 = new SlotMachine(el3, { active: 2, randomize() {
+  if (rigged_result != -1) {
+    return rigged_result;
+  } else {
+    console.log("forcing a loss");
+    return (m1_result+2)%num_slots;
+  }
+}});
+
 btnShuffle.addEventListener('click', () => {
+  if (Math.floor(Math.random()*4) == 0) { // they should win 1 in 4 times
+    console.log("setting rigged result");
+    rigged_result = Math.floor(Math.random()*num_slots);
+  } else {
+    rigged_result = -1;
+  }
+  console.log("rigged_result = " + rigged_result.toString());
   machine1.shuffle(5);
   machine2.shuffle(6);
   machine3.shuffle(7);
