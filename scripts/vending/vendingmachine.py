@@ -29,3 +29,7 @@ class VendingMachine:
 
         read_thread = Thread(target=self.read)
         read_thread.join()
+
+if __name__ == "__main__":
+    vm = VendingMachine()
+    vm.vend(4)
