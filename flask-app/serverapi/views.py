@@ -25,4 +25,4 @@ def upsert_doc(db_id, coll_id):
 
 # @app.route('/api/query/<string:db_id>/<string:coll_id>/<string:query>', methods=['GET'])
 def query(db_id, coll_id, query):
-    return jsonify(db.query(db_id, coll_id, 'select * from c where {}'.format(query)))
+    return db.query(db_id, coll_id, query)
