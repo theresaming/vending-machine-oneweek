@@ -10,9 +10,9 @@
 			<!-- <img [ngStyle]="{'opacity': loadingImage ? 0.3 : 1}" src="{{ imageUrl }}" (load)="imageLoad()" /> -->
 			<div class="image-display">
 				<div class="row">
-					<img class="refimage" src="./static/img/adidas1.jpg">
-					<img class="refimage" src="./static/img/adidas2.jpg">
-					<img class="refimage" src="./static/img/adidas3.jpg">
+					{% for image_url in ref_img_arr %}
+					<img class="refimage" src= {{ image_url }} >
+					{% endfor %}
 				</div>
 			</div>
 			<img src="./static/img/triangle.png" style="width:80px;margin-bottom:50px;">
