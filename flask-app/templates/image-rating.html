@@ -28,7 +28,7 @@
 		<div class="image-display" style="text-align: center;">
 			<div class="row">
 					{% for image_url in ver_img_arr %}
-					<img onclick="imageClick({{loop.index}})" class="image" src= {{ image_url }} id="img{{loop.index}}" >
+					<img onclick="imageClick({{ loop.index }})" class="image" src= {{ image_url }} id="img{{loop.index}}" >
 					{% endfor %}
 			</div>
 		</div>
@@ -46,9 +46,10 @@
 		<img src="./static/img/skip.png" style="width: 120px"/>
 	</span>
 	
-	<a href="{{ url_for('verify') }}" onclick="verify()" class="verify">
+	<span id="verify" method="post" class="verify">
 		<img src="./static/img/verify.png" style="width: 120px"/>
 	</span>
+	<input type="hidden" name="array" id="array" />
 </div>
 
 <script type=text/javascript>
@@ -77,18 +78,23 @@
 				arr[i-1] = 1;
 			}
 		}
+		var javascript_data = JSON.stringify(arr);
 		$.ajax({
-			url: "/rateimg",			
-			data: arr,
+			url: '/rateimg',
+			data: javascript_data,
 			contentType: 'application/json;charset=UTF-8',
 			type: 'POST',
-			async: false,
-			success:function(data) {
-				boolArr = arr;
+			success:function(response) {
+				console.log(response);
+			},
+			error: function(error) {
+				console.log(error);
 			}
+
 		});
-		return boolArr;
-  	}
+		return false;
+	}
+	document.getElementById("verify").onclick = function() {verify()};
 </script>
 
 

@@ -1,18 +1,19 @@
 from serverapi import views
-from flask import Flask, render_template, url_for, make_response, request
+from flask import Flask, render_template, url_for, make_response, request, Response, json, jsonify
 import random
 
 app = Flask(__name__)
 
+#GLOBAL VARIABLES 
+
 @app.route("/")
 def home():
+    tasks_completed = 0
     return render_template("index.html")
 
 @app.route("/rate", methods=('GET', 'POST'))
 def evaluate_images():
     # print (views.get_doc("data", "categories", "4"))
-    # value = verify()
-    # print(value)
     # return render_template("image-rating.html")
     reference = get_ref()
     category = reference[0]
@@ -28,9 +29,8 @@ def verify():
     # increment numbers completed
     # upsert values
     if (request.method == 'POST'):
-        print("reached")
-        a = request.args.get('arr')
-        print(a)
+        arrString = request.data
+        
     return evaluate_images()
 
 @app.route("/rate")
