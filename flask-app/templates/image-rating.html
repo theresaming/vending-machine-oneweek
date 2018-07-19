@@ -26,11 +26,9 @@
 	<div class="verify-image-wrap">
 		<div class="image-display" style="text-align: center;">
 			<div class="row">
-				<img (click)="imageClick(1)" id="img1" class="image" src="./static/img/adidas1.jpg">
-				<img (click)="imageClick(2)" id="img2" class="image" src="./static/img/adidas2.jpg">
-				<img (click)="imageClick(3)" id="img3" class="image" src="./static/img/adidas3.jpg">
-				<img (click)="imageClick(4)" id="img4" class="image" src="./static/img/adidas2.jpg">
-				<img (click)="imageClick(5)" id="img5" class="image" src="./static/img/adidas1.jpg">
+					{% for image_url in ver_img_arr %}
+					<img class="image" src= {{ image_url }} >
+					{% endfor %}
 			</div>
 		</div>
 	</div>
