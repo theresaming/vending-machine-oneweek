@@ -62,4 +62,4 @@ if __name__ == '__main__':
 
     for key, val in categories.items():
         print("inserting ... " + str(val))
-        client.CreateDocument(get_collection_link('data', 'categories'), val)
+        # client.CreateDocument(get_collection_link('data', 'categories'), val)

@@ -22,7 +22,8 @@ def get_ref():
     return [value['name'], value['ref_image_paths']]
     # return get_doc(db_id, coll_id, doc_id)
 
-def get_verify_images():
+# def get_verify_images():
+
 
 
 if __name__ == "__main__":

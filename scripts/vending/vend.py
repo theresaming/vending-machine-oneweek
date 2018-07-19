@@ -1,33 +1,26 @@
 import serial, time
-from threading import Thread
 
-arduino = serial.Serial('/dev/cu.usbmodem1411', 9600, timeout=.1)
-time.sleep(1)
-arduino.write("123")
+class VendingMachine:
+    ready = None
+    running = None
+    arduino = None
 
-running = True
+    def read(self):
+        while running:
+            recv_data = arduino.readline()
+            if recv_data == 'ready':
+                this.ready = True
+            elif recv_data:
+                print(recv_data) #strip out the new lines for now
+                recv_data = ""
 
-def read():
-    global running
-    while running:
-        recv_data = arduino.readline()
-        if recv_data:
-            print(recv_data) #strip out the new lines for now
-            recv_data = ""
+    def stop(this):
+        this.running = False
 
-def write():
-    global running
-    while running:
-        input_data = input().strip()
-        arduino.write(input_data)
+    def __init__(this):
+        this.running = True
+        this.ready = False
+        this.arduino = serial.Serial('/dev/cu.usbmodem1411', 9600, timeout=.1)
+        time.sleep(1)
+        this.arduino.write("123")
 
-        if input_data == "stop":
-            running = False
-
-read_thread = Thread(target=read)
-write_thread = Thread(target=write)
-
-read_thread.start()
-write_thread.start()
-
-read_thread.join()
