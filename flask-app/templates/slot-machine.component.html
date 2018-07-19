@@ -1,39 +1,57 @@
-<div id="machine">
-    <div>Madrid</div>
-    <div>London</div>
-    <div>New York</div>
-  </div>
-
-  <script>
-  const el = document.querySelector('#machine');
-  const machine = new SlotMachine(el, {
-    active: 1,
-    delay: 450,
-    auto: 1500
-  });
-  </script>
-<script src="../../../node_modules/jquery-slotmachine/dist/slotmachine.min.js"></script>
+<html>
+  <head>
+    <link rel="stylesheet" href="../static/css/jquery.slotmachine.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../static/css/lottery.css" type="text/css" media="screen" />
+    <script type="text/javascript" src="../static/js/slotmachine.min.js"></script>
+  </head>
+  <body>
+    <div>
+      <div id="machine1" class="randomizeMachine">
+        <div><img src="../static/img/slot1.png" /></div>
+        <div><img src="../static/img/slot2.png" /></div>
+        <div><img src="../static/img/slot3.png" /></div>
+        <div><img src="../static/img/slot4.png" /></div>
+        <!--<div><img src="../static/img/slot5.png" /></div>-->
+        <!--<div><img src="../static/img/slot6.png" /></div>-->
+      </div>
+      <div id="machine2" class="randomizeMachine">
+        <div><img src="../static/img/slot1.png" /></div>
+        <div><img src="../static/img/slot2.png" /></div>
+        <div><img src="../static/img/slot3.png" /></div>
+        <div><img src="../static/img/slot4.png" /></div>
+        <!--<div><img src="../static/img/slot5.png" /></div>-->
+        <!--<div><img src="../static/img/slot6.png" /></div>-->
+      </div>
+      <div id="machine3" class="randomizeMachine">
+        <div><img src="../static/img/slot1.png" /></div>
+        <div><img src="../static/img/slot2.png" /></div>
+        <div><img src="../static/img/slot3.png" /></div>
+        <div><img src="../static/img/slot4.png" /></div>
+        <!--<div><img src="../static/img/slot5.png" /></div>-->
+        <!--<div><img src="../static/img/slot6.png" /></div>-->
+      </div>
+      <button id="shuffle" type="button">Lever</button>
+    </div>
 <script>
-  const btn = document.querySelector('#randomizeButton');
-    const results = {
-      machine1: document.querySelector('#machine1Result'),
-      machine2: document.querySelector('#machine2Result'),
-      machine3: document.querySelector('#machine3Result')
-    };
-    const el1 = document.querySelector('#machine1');
-    const el2 = document.querySelector('#machine2');
-    const el3 = document.querySelector('#machine3');
-    const machine1 = new SlotMachine(el1, { active: 0 });
-    const machine2 = new SlotMachine(el2, { active: 1 });
-    const machine3 = new SlotMachine(el3, { active: 2 });
-
-    function onComplete(active){
-      results[this.element.id].innerText = `Index: ${this.active}`;
-    }
-
-    btn.addEventListener('click', () => {
-      machine1.shuffle(5, onComplete);
-      setTimeout(() => machine2.shuffle(5, onComplete), 500);
-      setTimeout(() => machine3.shuffle(5, onComplete), 1000);
-    });
+const results = {
+  machine1: document.querySelector('#machine1Result'),
+  machine2: document.querySelector('#machine2Result'),
+  machine3: document.querySelector('#machine3Result'),
+};
+const btnShuffle = document.querySelector('#shuffle');
+const el1 = document.querySelector('#machine1');
+const el2 = document.querySelector('#machine2');
+const el3 = document.querySelector('#machine3');
+const machine1 = new SlotMachine(el1);
+const machine2 = new SlotMachine(el2);
+const machine3 = new SlotMachine(el3);
+btnShuffle.addEventListener('click', () => {
+  machine1.shuffle(5);
+  machine2.shuffle(6);
+  machine3.shuffle(7);
+});
 </script>
+
+  </body>
+</html>
+
