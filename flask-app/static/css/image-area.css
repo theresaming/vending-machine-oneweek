@@ -99,6 +99,7 @@
 .info {
     display: inline;
     position: absolute;
+    left: 0;
 }
 
 .info img {

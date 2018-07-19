@@ -10,7 +10,7 @@ verified_data = []
 @app.route("/")
 def home():
     tasks_completed = 0
-    return render_template("index.html")
+    return render_template("index.html", tasks_completed = 0)
 
 global tasks_completed
 @app.route("/rate", methods=('GET', 'POST'))
@@ -27,7 +27,7 @@ def evaluate_images():
     # return render_template("image-rating.html")
     if (tasks_completed == 5):
         # done go to slot machine
-        return render_template("slot-machine.html")
+        return slot_machine()
     reference = get_ref()
     category = reference[0]
     ref_img_arr = reference[1]
@@ -35,7 +35,7 @@ def evaluate_images():
     ver_url_arr = []
     for image in ver_img_arr:
         ver_url_arr.append(image['img_url'])
-    return render_template("image-rating.html", category = category, ref_img_arr = ref_img_arr, ver_img_arr = ver_url_arr)
+    return render_template("image-rating.html", category = category, ref_img_arr = ref_img_arr, ver_img_arr = ver_url_arr, tasks_completed = tasks_completed)
 
 @app.route("/rate")
 def skip():
@@ -62,4 +62,5 @@ def get_verify_images(category):
     return ver_img_arr
 
 if __name__ == "__main__":
+    tasks_completed = 0
     app.run(debug=True)
