@@ -44,7 +44,7 @@ const el2 = document.querySelector('#machine2');
 const el3 = document.querySelector('#machine3');
 
 const machine1 = new SlotMachine(el1, { active: 0, randomize() {
-  if (rigged_result != -1) {
+  if (rigged_result >= 0) {
     m1_result = rigged_result;
   } else {
     m1_result = Math.floor(Math.random()*num_slots);
@@ -53,7 +53,7 @@ const machine1 = new SlotMachine(el1, { active: 0, randomize() {
 }});
 
 const machine2 = new SlotMachine(el2, { active: 1, randomize() {
-  if (rigged_result != -1) {
+  if (rigged_result >= 0) {
     return rigged_result;
   } else {
     return Math.floor(Math.random()*num_slots);
@@ -61,7 +61,7 @@ const machine2 = new SlotMachine(el2, { active: 1, randomize() {
 }});
 
 const machine3 = new SlotMachine(el3, { active: 2, randomize() {
-  if (rigged_result != -1) {
+  if (rigged_result >= 0) {
     return rigged_result;
   } else {
     console.log("forcing a loss");
@@ -70,8 +70,8 @@ const machine3 = new SlotMachine(el3, { active: 2, randomize() {
 }});
 
 btnShuffle.addEventListener('click', () => {
+  // this code will be replaced with the result from the lottery.py's spin method
   if (Math.floor(Math.random()*4) == 0) { // they should win 1 in 4 times
-    console.log("setting rigged result");
     rigged_result = Math.floor(Math.random()*num_slots);
   } else {
     rigged_result = -1;
