@@ -11,19 +11,19 @@ def home():
 @app.route("/rate")
 def evaluate_images():
     # print (views.get_doc("data", "categories", "4"))
-    category = get_ref()[0]
-    ref_img_arr = get_ref()[1]
+    info = get_ref()
+    category = info[0]
+    ref_img_arr = info[1]
     return render_template("image-rating.html", category = category, ref_img_arr = ref_img_arr)
 
 def get_ref():
     randomInteger = str(random.randint(0,20))
-    
-    value = views.get_doc("data", "categories", "5")
-    print (value['name'], value['ref_image_paths'])
+    value = views.get_doc("data", "categories", randomInteger)
     return [value['name'], value['ref_image_paths']]
     # return get_doc(db_id, coll_id, doc_id)
 
-def get_verify_images():
+# def get_verify_images():
+
 
 
 if __name__ == "__main__":
