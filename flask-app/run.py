@@ -9,7 +9,7 @@ def home():
 
 @app.route("/rate")
 def evaluate_images():
-    return render_template("image-rating.html")
+    return render_template("image-rating.html", category = "Adidas")
 
 if __name__ == "__main__":
     app.run(debug=True)
