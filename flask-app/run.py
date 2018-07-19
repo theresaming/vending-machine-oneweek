@@ -17,9 +17,13 @@ def evaluate_images():
 
 def get_ref():
     randomInteger = str(random.randint(0,20))
-    value = views.get_doc("data", "categories", randomInteger)
+    
+    value = views.get_doc("data", "categories", "5")
+    print (value['name'], value['ref_image_paths'])
     return [value['name'], value['ref_image_paths']]
     # return get_doc(db_id, coll_id, doc_id)
+
+def get_verify_images():
 
 
 if __name__ == "__main__":
