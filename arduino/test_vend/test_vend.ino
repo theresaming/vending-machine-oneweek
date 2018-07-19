@@ -87,10 +87,10 @@ void conveyor_setup() {
 
 
 void loop() {
-  //wheel();
-  //box();
-  //coil();
-  //delay(2000);
+  wheel();
+  box();
+  coil();
+  Serial.print("ready");
 
   if (Serial.available() > 0) {
     char data = Serial.read(); 
