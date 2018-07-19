@@ -80,7 +80,7 @@
 		}
 		var javascript_data = JSON.stringify(arr);
 		$.ajax({
-			url: '/rateimg',
+			url: '/rate',
 			data: javascript_data,
 			contentType: 'application/json;charset=UTF-8',
 			type: 'POST',
@@ -97,6 +97,4 @@
 	document.getElementById("verify").onclick = function() {verify()};
 </script>
 
-
-	<!-- <i *ngIf="loadingImage" class="fa fa-spinner fa-spin" style="font-family: FontAwesome; font-size:48px"></i> -->
 {% endblock %}

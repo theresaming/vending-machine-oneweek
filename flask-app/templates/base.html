@@ -10,24 +10,20 @@
   </head>
   <body>
     <div class="progress">
-    <div class="circle">
-      <span class="label">1</span>
-    </div>
-    <span class="bar"></span>
-    <div class="circle">
-      <span class="label">2</span>
-    </div>
-    <span class="bar"></span>
-    <div class="circle">
-      <span class="label">3</span>
-    </div>
-    <span class="bar"></span>
-    <div class="circle">
-      <span class="label">4</span>
-    </div>
-    <span class="bar"></span>
-    <div class="circle">
-      <span class="label">5</span>
+      {% for n in range(1,6)%}
+        {% if n >= tasks_completed - 1 %}
+        <div class="circle">
+          <span class="label">{{ n }}</span>
+        </div>
+        {% else %}
+        <div class="circle active">
+            <span class="label">{{ n }}</span>
+          </div>
+        {% endif %}
+        {% if n != 5 %}
+        <span class="bar"></span>
+        {% endif %}
+      {% endfor %}
     </div>
 
   </div>
