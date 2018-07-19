@@ -3,18 +3,31 @@ from flask import Flask, render_template, url_for, make_response, request, Respo
 import random
 
 app = Flask(__name__)
-
-#GLOBAL VARIABLES 
+tasks_completed = 0
+data = []
+verified_data = []
 
 @app.route("/")
 def home():
     tasks_completed = 0
     return render_template("index.html")
 
+global tasks_completed
 @app.route("/rate", methods=('GET', 'POST'))
 def evaluate_images():
+    global tasks_completed, verified_data
+    if (request.method == 'POST'):
+        tasks_completed += 1
+        arr_data = request.data
+        arr_data = arr_data[1:len(arr_data) - 1]
+        arr_data = arr_data.split(",")
+        verified_data = arr_data
+        print (tasks_completed)
     # print (views.get_doc("data", "categories", "4"))
     # return render_template("image-rating.html")
+    if (tasks_completed == 5):
+        # done go to slot machine
+        return render_template("slot-machine.html")
     reference = get_ref()
     category = reference[0]
     ref_img_arr = reference[1]
@@ -23,15 +36,6 @@ def evaluate_images():
     for image in ver_img_arr:
         ver_url_arr.append(image['img_url'])
     return render_template("image-rating.html", category = category, ref_img_arr = ref_img_arr, ver_img_arr = ver_url_arr)
-
-@app.route("/rateimg", methods=('GET', 'POST'))
-def verify():
-    # increment numbers completed
-    # upsert values
-    if (request.method == 'POST'):
-        arrString = request.data
-        
-    return evaluate_images()
 
 @app.route("/rate")
 def skip():
@@ -42,8 +46,10 @@ def slot_machine():
     return render_template("slot-machine.html")
 
 def get_ref():
+    global data
     randomInteger = str(random.randint(0,20))
     value = views.get_doc("data", "categories", randomInteger)
+    data = value
     return [value['name'], value['ref_image_paths']]
     # return get_doc(db_id, coll_id, doc_id)
 
