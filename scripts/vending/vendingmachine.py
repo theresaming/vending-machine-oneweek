@@ -2,6 +2,7 @@ import serial, time
 from threading import Thread
 
 class VendingMachine:
+    running = None
     ready = None
     arduino = None
     
@@ -24,6 +25,7 @@ class VendingMachine:
 
     def __init__(self):
         self.ready = False
+        self.running = True
         self.arduino = serial.Serial('/dev/cu.usbmodem1411', 9600, timeout=.1)
         time.sleep(1)
 
