@@ -15,7 +15,8 @@ def home():
 global tasks_completed
 @app.route("/rate", methods=('GET', 'POST'))
 def evaluate_images():
-    global tasks_completed, verified_data
+    global tasks_completed, verified_data, data
+    # print(data)
     if (request.method == 'POST'):
         tasks_completed += 1
         arr_data = request.data
@@ -23,10 +24,8 @@ def evaluate_images():
         arr_data = arr_data.split(",")
         verified_data = arr_data
         print (tasks_completed)
-    # print (views.get_doc("data", "categories", "4"))
-    # return render_template("image-rating.html")
     if (tasks_completed == 5):
-        # done go to slot machine
+        # upsert
         return slot_machine()
     reference = get_ref()
     category = reference[0]
@@ -39,17 +38,21 @@ def evaluate_images():
 
 @app.route("/rate")
 def skip():
+    global data
+    print (data['skip_count'])
     return render_template("image-rating.html")
 
 @app.route("/slotmachine")
 def slot_machine():
+    global tasks_completed
+    tasks_completed = 0
     return render_template("slot-machine.html")
 
 def get_ref():
     global data
     randomInteger = str(random.randint(0,20))
     value = views.get_doc("data", "categories", randomInteger)
-    data = value
+    data = value   
     return [value['name'], value['ref_image_paths']]
     # return get_doc(db_id, coll_id, doc_id)
 
