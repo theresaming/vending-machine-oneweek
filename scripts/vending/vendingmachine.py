@@ -2,12 +2,13 @@ import serial, time
 from threading import Thread
 
 class VendingMachine:
+    running = None
     ready = None
     arduino = None
     
     def read(self):
         while self.running:
-            recv_data = arduino.readline()
+            recv_data = self.arduino.readline()
             if recv_data.strip() == 'ready':
                 self.ready = True
                 break
@@ -19,11 +20,12 @@ class VendingMachine:
         if self.ready:
             self.arduino.write(str(function_id))
 
-    def stop(this):
+    def stop(self):
         self.ready = False
 
     def __init__(self):
         self.ready = False
+        self.running = True
         self.arduino = serial.Serial('/dev/cu.usbmodem1411', 9600, timeout=.1)
         time.sleep(1)
 
