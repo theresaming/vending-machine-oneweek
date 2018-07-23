@@ -26,17 +26,12 @@ class VendingMachine:
     def __init__(self):
         self.ready = False
         self.running = True
-        self.arduino = serial.Serial('COM1', 9600, timeout=.1)
+        self.arduino = serial.Serial('/dev/cu.usbmodem1411', 9600, timeout=.1)
         time.sleep(1)
 
         read_thread = Thread(target=self.read)
-        read_thread.start()
         read_thread.join()
 
 if __name__ == "__main__":
     vm = VendingMachine()
-    while True:
-        input_data = input().strip()
-        if input_data == "stop":
-            break
-        vm.arduino.write(input_data)
+    vm.vend(4)
