@@ -26,7 +26,6 @@ double wheel_baseline;
 
 void setup() {
   Serial.begin(9600);
-  Serial.println("Arduino listening ..."); // send to python
   box_servo.attach(BOX_SERVO);
   wheel_servo.attach(WHEEL_SERVO);
   coil_servo.attach(COIL_SERVO);
@@ -42,11 +41,17 @@ void setup() {
   pinMode(CONVEYOR_MOTOR, OUTPUT);
   pinMode(CONVEYOR_IR, INPUT);
 
-  light_strip.begin();
-
+  box_setup();
+  wheel_setup();
+  conveyor_setup();
+  Serial.println("Arduino listening ..."); // send to python
   
-  lights();
-  
+//
+//  light_strip.begin();
+//
+//  
+//  lights();
+//  
 
  
 }
@@ -87,10 +92,10 @@ void conveyor_setup() {
 
 
 void loop() {
-  wheel();
-  box();
-  coil();
-  Serial.print("ready");
+  //wheel();
+  //box();
+  //coil();
+  //delay(2000);
 
   if (Serial.available() > 0) {
     char data = Serial.read(); 
@@ -119,6 +124,7 @@ void loop() {
     }
   }
   delay(10);
+  lights();
 }
 
 void wheel() {
@@ -164,7 +170,14 @@ void coil() {
 
 void conveyor() {
   digitalWrite(CONVEYOR_MOTOR, HIGH);
-  delay(400);
+  while(true) {
+    int val = digitalRead(CONVEYOR_IR);
+    Serial.println(val);
+    if (val) {
+      break;
+    }
+    delay(10);
+  }
   while(true) {
     int val = digitalRead(CONVEYOR_IR); 
     Serial.println(val);
@@ -179,9 +192,55 @@ void conveyor() {
 
 void lights() {
   for (int i = 0; i < NUM_LIGHTS; i++) {
-    light_strip.setPixelColor(i, light_strip.Color(255, 255, 255));
+    light_strip.setPixelColor(i, light_strip.Color(240, 230, 100));
   }
-  light_strip.show();
+//  while(true) {
+//    colorWipe(244,66,215, 50);
+//    colorWipe(0x00,0x00,0x00, 50);
+//  }
+//  
+}
+void rainbowCycle(int SpeedDelay) {
+  byte *c;
+  uint16_t i, j;
+
+  for(j=0; j<256*5; j++) { // 5 cycles of all colors on wheel
+    for(i=0; i< NUM_LIGHTS; i++) {
+      c=Wheel(((i * 256 / NUM_LIGHTS) + j) & 255);
+      light_strip.setPixelColor(i, *c, *(c+1), *(c+2));
+    }
+    light_strip.show();
+    delay(SpeedDelay);
+  }
 }
 
+void colorWipe(byte red, byte green, byte blue, int SpeedDelay) {
+  for(uint16_t i=0; i<NUM_LIGHTS; i++) {
+      light_strip.setPixelColor(i, red, green, blue);
+      light_strip.show();
+      delay(SpeedDelay);
+  }
+}
+
+byte * Wheel(byte WheelPos) {
+  static byte c[3];
+  
+  if(WheelPos < 85) {
+   c[0]=WheelPos * 3;
+   c[1]=255 - WheelPos * 3;
+   c[2]=0;
+  } else if(WheelPos < 170) {
+   WheelPos -= 85;
+   c[0]=255 - WheelPos * 3;
+   c[1]=0;
+   c[2]=WheelPos * 3;
+  } else {
+   WheelPos -= 170;
+   c[0]=0;
+   c[1]=WheelPos * 3;
+   c[2]=255 - WheelPos * 3;
+  }
+
+  return c;
+}
 
