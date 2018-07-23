@@ -35,8 +35,5 @@ class VendingMachine:
 
 if __name__ == "__main__":
     vm = VendingMachine()
-    while True:
-        input_data = input().strip()
-        if input_data == "stop":
-            break
-        vm.arduino.write(input_data)
+    input_data = input().strip()
+    vm.arduino.write(input_data)

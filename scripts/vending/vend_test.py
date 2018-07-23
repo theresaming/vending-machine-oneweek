@@ -1,7 +1,7 @@
 import serial, time
 from threading import Thread
 
-arduino = serial.Serial('COM3', 9600, timeout=.1)
+arduino = serial.Serial('/dev/cu.usbmodem1411', 9600, timeout=.1)
 time.sleep(1)
 
 running = True
@@ -16,9 +16,11 @@ def read():
 
 def write():
     global running
+
     while running:
         input_data = input().strip()
-        arduino.write(input_data)
+        print(input_data)
+        arduino.write(input_data.encode('latin-1'))
 
         if input_data == "stop":
             running = False
