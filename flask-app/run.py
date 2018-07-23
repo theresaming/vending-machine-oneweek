@@ -23,7 +23,8 @@ def evaluate_images():
         arr_data = arr_data[1:len(arr_data) - 1]
         arr_data = arr_data.split(",")
         verified_data = arr_data
-        print (tasks_completed)
+        if (tasks_completed == 5):
+            return slot_machine()
     if (tasks_completed == 5):
         # upsert
         return slot_machine()
@@ -34,6 +35,7 @@ def evaluate_images():
     ver_url_arr = []
     for image in ver_img_arr:
         ver_url_arr.append(image['img_url'])
+    print ("tasks completed:", tasks_completed)
     return render_template("image-rating.html", category = category, ref_img_arr = ref_img_arr, ver_img_arr = ver_url_arr, tasks_completed = tasks_completed)
 
 @app.route("/rate")
@@ -44,8 +46,7 @@ def skip():
 
 @app.route("/slotmachine")
 def slot_machine():
-    global tasks_completed
-    tasks_completed = 0
+    # global tasks_completed
     return render_template("slot-machine.html")
 
 def get_ref():

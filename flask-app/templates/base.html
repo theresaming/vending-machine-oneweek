@@ -11,7 +11,7 @@
   <body>
     <div class="progress">
       {% for n in range(1,6)%}
-        {% if n <= tasks_completed - 1%}
+        {% if n <= tasks_completed%}
         <div class="circle active">
           <span class="label">{{ n }}</span>
         </div>

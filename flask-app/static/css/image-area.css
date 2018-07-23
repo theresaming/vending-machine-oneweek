@@ -1,5 +1,5 @@
 .howaccurate {
-    font-size: 27px;
+    font-size: 50px;
     margin-top: 15px;
     padding-top: 20px;
 }
@@ -7,7 +7,7 @@
 .imagearea {
     text-align: center;
     background-color: #EBEBEB;
-    height: 230px;
+    height: 500px;
 }
 
 .image-wrap {
@@ -18,7 +18,7 @@
 }
 
 .image-wrap img {
-    max-height: 120px;
+    max-height: 300px;
     display: inline;
     margin-left: 20px;
     margin-right: 20px;
@@ -26,7 +26,7 @@
 }
 
 .verify-image-wrap img {
-    max-height: 120px;
+    max-height: 250px;
     display:inline;
     margin:20px;
     border: 5px solid transparent;
@@ -38,7 +38,7 @@
 
 .verify-images {
     margin: 25px;
-    font-size: 27px;
+    font-size: 50px;
     text-align: left;
     margin-top: 50px;
 }

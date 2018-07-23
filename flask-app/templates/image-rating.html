@@ -35,19 +35,19 @@
 	</div>
 </div>
 
-<div class="info" style="margin-top:-15px">
+<div class="info" style="margin-top:-15px;bottom: 0px; position:fixed; left:0px; ">
 	<span (click)="showInfo()" class="info">
-		<img src="../static/img/info.png">
+		<img src="../static/img/info.png" style="width:200px">
 	</span>
 </div>
 
-<div class = "buttons" style="text-align:right;margin-top: -20px;"> 
+<div class = "buttons" style="text-align:right;margin-top: -20px;bottom: 0px;position: fixed;right: 0;"> 
 	<a href="{{ url_for('skip') }}" class="skip" style="margin-right:20px;">
-		<img src="./static/img/skip.png" style="width: 120px"/>
+		<img src="./static/img/skip.png" style="width: 300px;"/>
 	</span>
 	
 	<span id="verify" method="post" class="verify">
-		<img src="./static/img/verify.png" style="width: 120px"/>
+		<img src="./static/img/verify.png" style="width: 300px;"/>
 	</span>
 	<input type="hidden" name="array" id="array" />
 </div>
