@@ -1,9 +1,8 @@
 import serial, time
 from threading import Thread
 
-arduino = serial.Serial('/dev/cu.usbmodem1411', 9600, timeout=.1)
+arduino = serial.Serial('COM3', 9600, timeout=.1)
 time.sleep(1)
-arduino.write("123")
 
 running = True
 
@@ -31,3 +30,4 @@ read_thread.start()
 write_thread.start()
 
 read_thread.join()
+write_thread.join()
