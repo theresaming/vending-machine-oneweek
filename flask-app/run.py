@@ -9,10 +9,10 @@ verified_data = []
 
 @app.route("/")
 def home():
+    global tasks_completed
     tasks_completed = 0
     return render_template("index.html", tasks_completed = 0)
 
-global tasks_completed
 @app.route("/rate", methods=('GET', 'POST'))
 def evaluate_images():
     global tasks_completed, verified_data, data
