@@ -29,7 +29,7 @@ class VendingMachine:
         print('initializing', anything)
         self.ready = True
         self.running = True
-        self.arduino = serial.Serial('COM1', 9600, timeout=.1)
+        self.arduino = serial.Serial('COM3', 9600, timeout=.1)
         time.sleep(1)
         self.arduino.write('0'.encode('latin-1'))
 
