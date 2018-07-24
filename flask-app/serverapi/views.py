@@ -16,8 +16,8 @@ def delete_doc(db_id, coll_id, doc_id):
     return db.delete_document(db_id, coll_id, doc_id)
 
 # @app.route('/api/create/<string:db_id>/<string:coll_id>', methods=['POST'])
-def create_doc(db_id, coll_id):
-    return db.create_document(db_id, coll_id, request.get_json()["document"])
+def create_doc(db_id, coll_id, document):
+    return db.create_document(db_id, coll_id, document)
 
 # @app.route('/api/upsert/<string:db_id>/<string:coll_id>', methods=['POST'])
 def upsert_doc(db_id, coll_id, document):

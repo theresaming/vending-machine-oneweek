@@ -26,18 +26,17 @@ def evaluate_images():
         arr_data = arr_data[1:len(arr_data) - 1]
         arr_data = arr_data.split(",")
         # upsert
-        print ("\n\n\n")
+        print("old verified data", verified_data)
         for i in range(len(arr_data)):
             if (arr_data[i] == '1'):
                 # upsert
                 verified_data[i]['judgement_count'] += 1
-                verified_data[i]['judgements'].append(1)
+                verified_data[i]['judgements'].append("true")
             else:
                 verified_data[i]['judgement_count'] += 1
-                verified_data[i]['judgements'].append(0)        
-        # if completed
-        views.upsert_doc("data", "images", verified_data)
-        
+                verified_data[i]['judgements'].append("false")  
+            views.upsert_doc("data", "images", verified_data[i])
+
         if (tasks_completed == 5): 
             return render_template("slot-machine.html")
     if (tasks_completed == 5):
