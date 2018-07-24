@@ -18,20 +18,24 @@ class VendingMachine:
 
     def vend(self, function_id):
         if self.ready:
-            self.arduino.write(str(function_id))
+            print("help", function_id)
+            self.arduino.write(repr(function_id).encode('latin-1'))
+            # self.arduino.write(function_id)
 
     def stop(self):
         self.ready = False
 
-    def __init__(self):
-        self.ready = False
+    def __init__(self, anything):
+        print('initializing', anything)
+        self.ready = True
         self.running = True
         self.arduino = serial.Serial('/dev/cu.usbmodem1411', 9600, timeout=.1)
         time.sleep(1)
+        self.arduino.write('0'.encode('latin-1'))
 
         read_thread = Thread(target=self.read)
-        read_thread.join()
+        read_thread.start()
+        # read_thread.join()
 
 if __name__ == "__main__":
     vm = VendingMachine()
-    vm.vend(4)

@@ -20,7 +20,7 @@ class Lottery:
         if len(self.__items) == 0:
             return -1
 
-        if randing(1, 4) == 1:
+        if randint(1, 4) == 1:
             return self.__items.pop(randint(0, len(self.__items)-1))
         else:
             return 0
@@ -31,8 +31,8 @@ class Lottery:
     def __init__(self):
         self.reset()
 
-if __name__ == "__main__":
-    lott = Lottery()
-    print("running")
-    for i in range(lott.get_num_items() + 4):
-        print(lott.spin())
+# if __name__ == "__main__":
+#     lott = Lottery()
+#     print("running")
+#     for i in range(lott.get_num_items() + 4):
+#         print(lott.spin())

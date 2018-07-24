@@ -2,40 +2,59 @@
   <head>
     <link rel="stylesheet" href="../static/css/jquery.slotmachine.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="../static/css/lottery.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../static/css/bootstrap.css" type="text/css" media="screen" />
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="../static/js/slotmachine.min.js"></script>
   </head>
   <body>
-    <div>
-      <div id="machine1" class="randomizeMachine">
-        <div><img src="../static/img/slot1.png" /></div>
-        <div><img src="../static/img/slot2.png" /></div>
-        <div><img src="../static/img/slot3.png" /></div>
-        <div><img src="../static/img/slot4.png" /></div>
-        <!--<div><img src="../static/img/slot5.png" /></div>-->
-        <!--<div><img src="../static/img/slot6.png" /></div>-->
+    <div id="randomize">
+      <div class = "container">
+        <div class = "row">
+          <div class = "col-md-4">
+              <div id="machine1" class="randomizeMachine">
+                  <div><img src="../static/img/slot1.png" class="item" /></div>
+                  <div><img src="../static/img/slot2.png" class="item" /></div>
+                  <div><img src="../static/img/slot3.png" class="item" /></div>
+                  <div><img src="../static/img/slot4.png" class="item" /></div>
+                  <!--<div><img src="../static/img/slot5.png" /></div>-->
+                  <!--<div><img src="../static/img/slot6.png" /></div>-->
+                </div>
+          </div>
+          <div class="col-md-4">
+              <div id="machine2" class="randomizeMachine">
+                  <div><img src="../static/img/slot1.png" class="item" /></div>
+                  <div><img src="../static/img/slot2.png" class="item" /></div>
+                  <div><img src="../static/img/slot3.png" class="item" /></div>
+                  <div><img src="../static/img/slot4.png" class="item" /></div>
+                  <!--<div><img src="../static/img/slot5.png" /></div>-->
+                  <!--<div><img src="../static/img/slot6.png" /></div>-->
+                </div>
+          </div>
+          <div class="col-md-4">
+              <div id="machine3" class="randomizeMachine">
+                  <div><img src="../static/img/slot1.png" class="item" /></div>
+                  <div><img src="../static/img/slot2.png" class="item" /></div>
+                  <div><img src="../static/img/slot3.png" class="item" /></div>
+                  <div><img src="../static/img/slot4.png" class="item" /></div>
+                  <!--<div><img src="../static/img/slot5.png" /></div>-->
+                  <!--<div><img src="../static/img/slot6.png" /></div>-->
+                </div>
+          </div>
+        </div>
       </div>
-      <div id="machine2" class="randomizeMachine">
-        <div><img src="../static/img/slot1.png" /></div>
-        <div><img src="../static/img/slot2.png" /></div>
-        <div><img src="../static/img/slot3.png" /></div>
-        <div><img src="../static/img/slot4.png" /></div>
-        <!--<div><img src="../static/img/slot5.png" /></div>-->
-        <!--<div><img src="../static/img/slot6.png" /></div>-->
+  </div>
+  <div class="container">
+    <div class"row">
+      <div class="col-md-12" style="text-align: center;">
+          <button id="shuffle" onclick = "clickAjax()"type="button" class="btn btn-danger btn-lg" style="text-align:center">Spin!</button>
       </div>
-      <div id="machine3" class="randomizeMachine">
-        <div><img src="../static/img/slot1.png" /></div>
-        <div><img src="../static/img/slot2.png" /></div>
-        <div><img src="../static/img/slot3.png" /></div>
-        <div><img src="../static/img/slot4.png" /></div>
-        <!--<div><img src="../static/img/slot5.png" /></div>-->
-        <!--<div><img src="../static/img/slot6.png" /></div>-->
-      </div>
-      <button id="shuffle" type="button">Lever</button>
     </div>
+  </div>
+
 <script>
 
-const num_slots = 4;
-var rigged_result = -1;
+const num_slots = 3;
+var rigged_result = '{{ slot_result }}';
 var m1_result = 0;
 
 const btnShuffle = document.querySelector('#shuffle');
@@ -44,7 +63,7 @@ const el2 = document.querySelector('#machine2');
 const el3 = document.querySelector('#machine3');
 
 const machine1 = new SlotMachine(el1, { active: 0, randomize() {
-  if (rigged_result >= 0) {
+  if (rigged_result > 0) {
     m1_result = rigged_result;
   } else {
     m1_result = Math.floor(Math.random()*num_slots);
@@ -53,7 +72,7 @@ const machine1 = new SlotMachine(el1, { active: 0, randomize() {
 }});
 
 const machine2 = new SlotMachine(el2, { active: 1, randomize() {
-  if (rigged_result >= 0) {
+  if (rigged_result > 0) {
     return rigged_result;
   } else {
     return Math.floor(Math.random()*num_slots);
@@ -61,7 +80,7 @@ const machine2 = new SlotMachine(el2, { active: 1, randomize() {
 }});
 
 const machine3 = new SlotMachine(el3, { active: 2, randomize() {
-  if (rigged_result >= 0) {
+  if (rigged_result > 0) {
     return rigged_result;
   } else {
     console.log("forcing a loss");
@@ -71,16 +90,36 @@ const machine3 = new SlotMachine(el3, { active: 2, randomize() {
 
 btnShuffle.addEventListener('click', () => {
   // this code will be replaced with the result from the lottery.py's spin method
-  if (Math.floor(Math.random()*4) == 0) { // they should win 1 in 4 times
-    rigged_result = Math.floor(Math.random()*num_slots);
-  } else {
-    rigged_result = -1;
-  }
+  // if (Math.floor(Math.random()*4) == 0) { // they should win 1 in 4 times
+  //   rigged_result = Math.floor(Math.random()*num_slots);
+  // } else {
+  //   rigged_result = -1;
+  // }
+  console.log("{{ slot_result }}")
+  rigged_result = '{{ slot_result }}';
   console.log("rigged_result = " + rigged_result.toString());
-  machine1.shuffle(5);
-  machine2.shuffle(6);
-  machine3.shuffle(7);
+  machine1.shuffle(8);
+  machine2.shuffle(9);
+  machine3.shuffle(10);
 });
+
+function clickAjax() {
+  var completed = 1;
+  var javascript_data = JSON.stringify(completed);
+	$.ajax({
+			url: '/slotmachine',
+			data: javascript_data,
+			contentType: 'application/json;charset=UTF-8',
+			type: 'POST',
+			success:function(response) {
+				console.log("clicked");
+			},
+			error: function(error) {
+				console.log("error");
+			}
+		});
+		return false;
+}
 </script>
 
   </body>

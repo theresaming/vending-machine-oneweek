@@ -20,8 +20,8 @@ def create_doc(db_id, coll_id):
     return db.create_document(db_id, coll_id, request.get_json()["document"])
 
 # @app.route('/api/upsert/<string:db_id>/<string:coll_id>', methods=['POST'])
-def upsert_doc(db_id, coll_id):
-    return db.upsert_document(db_id, coll_id, request.get_json()["document"])
+def upsert_doc(db_id, coll_id, document):
+    return db.upsert_document(db_id, coll_id, document)
 
 # @app.route('/api/query/<string:db_id>/<string:coll_id>/<string:query>', methods=['GET'])
 def query(db_id, coll_id, query):

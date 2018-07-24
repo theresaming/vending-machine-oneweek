@@ -25,6 +25,8 @@ double box_baseline;
 double wheel_baseline;
 
 void setup() {
+  light_strip.begin();
+  lights();
   Serial.begin(9600);
   box_servo.attach(BOX_SERVO);
   wheel_servo.attach(WHEEL_SERVO);
@@ -43,14 +45,9 @@ void setup() {
 
   box_setup();
   wheel_setup();
-  conveyor_setup();
+//  conveyor_setup();
   Serial.println("Arduino listening ..."); // send to python
-  
-//
-//  light_strip.begin();
-//
-//  
-//  lights();
+  lights();
 //  
 
  
@@ -59,26 +56,26 @@ void setup() {
 void box_setup() {
   Serial.println("Box setup starting");
   int sum = 0;
-  for (int i  = 0; i < 200; i++) {
+  for (int i  = 0; i < 100; i++) {
     int val = analogRead(BOX_IR); //box ir sensor
     Serial.println(val);
     sum = sum + val;
-    delay(100);
+    delay(20);
   }
-  box_baseline = sum / 200.0; 
+  box_baseline = sum / 100.0; 
   Serial.println("Box IR done calibrating");
 }
 
 void wheel_setup() {
   Serial.println("Wheel setup starting");
   int sum = 0;
-  for (int i  = 0; i < 200; i++) {
+  for (int i  = 0; i < 100; i++) {
     int val = analogRead(WHEEL_IR); 
     Serial.println(val);
     sum = sum + val;
-    delay(100);
+    delay(20);
   }
-  wheel_baseline = sum / 200.0; 
+  wheel_baseline = sum / 100.0; 
   Serial.println("Wheel IR done calibrating");
 }
 
@@ -96,6 +93,8 @@ void loop() {
   //box();
   //coil();
   //delay(2000);
+//  light_strip.begin();
+//  lights();
 
   if (Serial.available() > 0) {
     char data = Serial.read(); 
@@ -124,7 +123,7 @@ void loop() {
     }
   }
   delay(10);
-  lights();
+//  lights();
 }
 
 void wheel() {
@@ -153,13 +152,17 @@ void box() {
   
   while(true) {
     int val = analogRead(BOX_IR); //box ir sensor
+    Serial.print("value: ");
     Serial.println(val);
+    Serial.print("box_baseline: ");
+    Serial.println(box_baseline);
     if (val > box_baseline + 300) {
       box_servo.write(94);
       break;
     }
-    delay(50);
+    delay(10);
   }
+
 }
 
 void coil() {
@@ -192,7 +195,8 @@ void conveyor() {
 
 void lights() {
   for (int i = 0; i < NUM_LIGHTS; i++) {
-    light_strip.setPixelColor(i, light_strip.Color(240, 230, 100));
+    colorWipe(244,66,215, 50);
+    colorWipe(0x00,0x00,0x00, 50);
   }
 //  while(true) {
 //    colorWipe(244,66,215, 50);

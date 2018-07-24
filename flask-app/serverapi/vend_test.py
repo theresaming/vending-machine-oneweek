@@ -20,7 +20,7 @@ def write():
     while running:
         input_data = input().strip()
         print(input_data)
-        arduino.write(input_data.encode('latin-1'))
+        # arduino.write(str(input_data).encode('latin-1'))
 
         if input_data == "stop":
             running = False
