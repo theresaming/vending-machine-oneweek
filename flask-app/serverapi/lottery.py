@@ -22,7 +22,7 @@ class Lottery:
 
         if randint(1, 4) == 1:
             return self.__items.pop(randint(0, len(self.__items)-1))
-        else:
+        else: #lose
             return 0
 
     def get_num_items(self):

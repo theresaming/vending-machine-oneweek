@@ -63,7 +63,7 @@ const el2 = document.querySelector('#machine2');
 const el3 = document.querySelector('#machine3');
 
 const machine1 = new SlotMachine(el1, { active: 0, randomize() {
-  if (rigged_result >= 0) {
+  if (rigged_result > 0) {
     m1_result = rigged_result;
   } else {
     m1_result = Math.floor(Math.random()*num_slots);
@@ -72,7 +72,7 @@ const machine1 = new SlotMachine(el1, { active: 0, randomize() {
 }});
 
 const machine2 = new SlotMachine(el2, { active: 1, randomize() {
-  if (rigged_result >= 0) {
+  if (rigged_result > 0) {
     return rigged_result;
   } else {
     return Math.floor(Math.random()*num_slots);
@@ -80,10 +80,9 @@ const machine2 = new SlotMachine(el2, { active: 1, randomize() {
 }});
 
 const machine3 = new SlotMachine(el3, { active: 2, randomize() {
-  if (rigged_result >= 0) {
+  if (rigged_result > 0) {
     return rigged_result;
   } else {
-    console.log("forcing a loss");
     return (m1_result+2)%num_slots;
   }
 }});
@@ -122,7 +121,7 @@ function clickAjax() {
     window.setTimeout(function(){
       // Move to a new location or you can do something else
       window.location.href = "http://127.0.0.1:5000/";
-    }, 5000);
+    }, 7000);
     return false;
     
 }
