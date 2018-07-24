@@ -63,7 +63,7 @@ const el2 = document.querySelector('#machine2');
 const el3 = document.querySelector('#machine3');
 
 const machine1 = new SlotMachine(el1, { active: 0, randomize() {
-  if (rigged_result > 0) {
+  if (rigged_result >= 0) {
     m1_result = rigged_result;
   } else {
     m1_result = Math.floor(Math.random()*num_slots);
@@ -72,7 +72,7 @@ const machine1 = new SlotMachine(el1, { active: 0, randomize() {
 }});
 
 const machine2 = new SlotMachine(el2, { active: 1, randomize() {
-  if (rigged_result > 0) {
+  if (rigged_result >= 0) {
     return rigged_result;
   } else {
     return Math.floor(Math.random()*num_slots);
@@ -80,7 +80,7 @@ const machine2 = new SlotMachine(el2, { active: 1, randomize() {
 }});
 
 const machine3 = new SlotMachine(el3, { active: 2, randomize() {
-  if (rigged_result > 0) {
+  if (rigged_result >= 0) {
     return rigged_result;
   } else {
     console.log("forcing a loss");
@@ -98,9 +98,9 @@ btnShuffle.addEventListener('click', () => {
   console.log("{{ slot_result }}")
   rigged_result = '{{ slot_result }}';
   console.log("rigged_result = " + rigged_result.toString());
-  machine1.shuffle(8);
-  machine2.shuffle(9);
-  machine3.shuffle(10);
+  machine1.shuffle(7);
+  machine2.shuffle(8);
+  machine3.shuffle(9);
 });
 
 function clickAjax() {
@@ -117,9 +117,16 @@ function clickAjax() {
 			error: function(error) {
 				console.log("error");
 			}
-		});
-		return false;
+    });
+    
+    window.setTimeout(function(){
+      // Move to a new location or you can do something else
+      window.location.href = "http://127.0.0.1:5000/";
+    }, 5000);
+    return false;
+    
 }
+
 </script>
 
   </body>
