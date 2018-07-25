@@ -59,7 +59,7 @@ def skip():
 @app.route("/slotmachine", methods=('GET', 'POST'))
 def slot_machine():
     global lot, vending
-    slot_result = 7
+    slot_result = 5
     # slot_result = lot.spin()
     if (request.method == 'POST'):
         if request.data.decode() == '1':
