@@ -19,14 +19,13 @@ const int CONVEYOR_IR = 8;
 
 const int LIGHTS = 7;
 const int NUM_LIGHTS = 22; 
+const int BRIGHTNESS = 50;
 Adafruit_NeoPixel light_strip = Adafruit_NeoPixel(NUM_LIGHTS, LIGHTS, NEO_GRB + NEO_KHZ800);
 
 double box_baseline;
 double wheel_baseline;
 
 void setup() {
-  light_strip.begin();
-  lights();
   Serial.begin(9600);
   box_servo.attach(BOX_SERVO);
   wheel_servo.attach(WHEEL_SERVO);
@@ -42,15 +41,11 @@ void setup() {
 
   pinMode(CONVEYOR_MOTOR, OUTPUT);
   pinMode(CONVEYOR_IR, INPUT);
-
+  light_strip.begin();
   box_setup();
   wheel_setup();
 //  conveyor_setup();
-  Serial.println("Arduino listening ..."); // send to python
-  lights();
-//  
-
- 
+  Serial.println("Arduino listening ..."); // send to python 
 }
 
 void box_setup() {
@@ -93,40 +88,42 @@ void loop() {
   //box();
   //coil();
   //delay(2000);
-//  light_strip.begin();
-//  lights();
-
   if (Serial.available() > 0) {
     char data = Serial.read(); 
-    Serial.print(data);
+    Serial.println(data);
     if (data == '1') {
-      Serial.print("box_setup()");
+      Serial.println("box_setup()");
       box_setup();
     } else if (data == '2') {
-      Serial.print("wheel_setup()");
+      Serial.println("wheel_setup()");
       wheel_setup();
     } else if (data == '3') {
-      Serial.print("conveyor_setup()");
+      Serial.println("conveyor_setup()");
       conveyor_setup();
     } else if (data == '4') {
-      Serial.print("box()");
+      Serial.println("box()");
+      delay(500);
       box();
     } else if (data == '5') {
-      Serial.print("wheel()");
+      delay(500);
+      Serial.println("wheel()");
       wheel();
     } else if (data == '6') {
-      Serial.print("coil()");
+      delay(500);
+      Serial.println("coil()");
       coil(); 
     } else if (data == '7') {
-      Serial.print("conveyor()");
+      delay(500);
+      Serial.println("conveyor()");
       conveyor();
     }
   }
   delay(10);
-//  lights();
+  lights();
 }
 
 void wheel() {
+   Serial.println("Wheel dispensing");
   wheel_servo.write(98);
   delay(800);
   
@@ -147,6 +144,7 @@ void wheel() {
 }
 
 void box() {
+   Serial.println("Box dispensing");
   box_servo.write(80);
   delay(400);
   
@@ -172,6 +170,7 @@ void coil() {
 }
 
 void conveyor() {
+   Serial.println("Conveyor dispensing");
   digitalWrite(CONVEYOR_MOTOR, HIGH);
   while(true) {
     int val = digitalRead(CONVEYOR_IR);
@@ -194,15 +193,14 @@ void conveyor() {
 }
 
 void lights() {
-  for (int i = 0; i < NUM_LIGHTS; i++) {
-    colorWipe(244,66,215, 50);
-    colorWipe(0x00,0x00,0x00, 50);
-  }
-//  while(true) {
+//  for (int i = 0; i < NUM_LIGHTS; i++) {
 //    colorWipe(244,66,215, 50);
 //    colorWipe(0x00,0x00,0x00, 50);
 //  }
-//  
+  
+  rainbowCycle(15);
+  
+
 }
 void rainbowCycle(int SpeedDelay) {
   byte *c;
@@ -214,6 +212,9 @@ void rainbowCycle(int SpeedDelay) {
       light_strip.setPixelColor(i, *c, *(c+1), *(c+2));
     }
     light_strip.show();
+    if (Serial.available() > 0) {
+      break;
+    }
     delay(SpeedDelay);
   }
 }
