@@ -37,9 +37,9 @@ def evaluate_images():
                 verified_data[i]['judgements'].append("false")  
             views.upsert_doc("data", "images", verified_data[i])
 
-        if (tasks_completed == 5): 
+        if (tasks_completed >= 5): 
             return render_template("slot-machine.html")
-    if (tasks_completed == 5):
+    if (tasks_completed >= 5):
         return render_template("slot-machine.html")
     reference = get_ref()
     category = reference[0]
