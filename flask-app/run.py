@@ -59,7 +59,8 @@ def skip():
 @app.route("/slotmachine", methods=('GET', 'POST'))
 def slot_machine():
     global lot, vending
-    slot_result = lot.spin()
+    # slot_result = lot.spin()
+    slot_result = 4
     if (request.method == 'POST'):
         if request.data.decode() == '1':
             #  send result to arduino
